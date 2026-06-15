@@ -8,7 +8,7 @@ const config: Config = {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
-    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(css|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
   },
   testMatch: ['**/tests/**/*.test.{ts,tsx}'],
 }
