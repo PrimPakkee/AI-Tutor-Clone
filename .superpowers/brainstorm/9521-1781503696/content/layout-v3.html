@@ -1,0 +1,147 @@
+<h2>三分屏布局 · 直播风格</h2>
+<p class="subtitle">讲义主导，右侧收窄，整体呈现直播感</p>
+
+<div style="max-width: 720px; margin: 0 auto;">
+  <div style="border: 1px solid #333; border-radius: 8px; overflow: hidden; font-size: 11px; box-shadow: 0 4px 32px rgba(0,0,0,0.6);">
+
+    <!-- Top bar: course title + LIVE badge only -->
+    <div style="background: #111118; padding: 7px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1e1e2e;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="color: #e2e8f0; font-size: 11px; font-weight: 600;">SAT Math · Quadratic Functions</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <div style="width: 7px; height: 7px; background: #ef4444; border-radius: 50%;"></div>
+        <span style="color: #ef4444; font-size: 9px; font-weight: 700; letter-spacing: 1px;">LIVE</span>
+        <span style="color: #334155; font-size: 9px; margin-left: 4px;">128 watching</span>
+      </div>
+    </div>
+
+    <!-- Main layout: left 70%, right 30% -->
+    <div style="display: flex; height: 360px; background: #0a0a12;">
+
+      <!-- LEFT: Lecture notes 70% -->
+      <div style="width: 70%; border-right: 1px solid #1a1a28; display: flex; flex-direction: column;">
+        <div style="flex: 1; margin: 14px; background: #12121e; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+
+          <!-- Slide title -->
+          <div style="color: #e2e8f0; font-size: 14px; font-weight: 700; border-bottom: 1px solid #1e1e3a; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <span>Vertex Form of a Quadratic</span>
+            <span style="color: #334155; font-size: 9px; font-weight: 400;">3 / 12</span>
+          </div>
+
+          <!-- Formula block -->
+          <div style="background: #0d0d1e; border-left: 3px solid #6366f1; padding: 10px 14px; border-radius: 0 5px 5px 0;">
+            <div style="color: #a5b4fc; font-size: 16px; font-family: 'Georgia', serif; text-align: center; letter-spacing: 2px;">
+              f(x) = a(x − h)² + k
+            </div>
+          </div>
+
+          <!-- Graph + annotations -->
+          <div style="flex: 1; background: #080812; border-radius: 5px; display: flex; align-items: center; justify-content: center; padding: 10px; position: relative;">
+            <svg width="240" height="145" viewBox="0 0 240 155">
+              <!-- Grid lines -->
+              <line x1="20" y1="120" x2="220" y2="120" stroke="#1e293b" stroke-width="1"/>
+              <line x1="120" y1="10" x2="120" y2="130" stroke="#1e293b" stroke-width="1"/>
+              <!-- Minor grid -->
+              <line x1="70" y1="117" x2="70" y2="123" stroke="#1e293b" stroke-width="1"/>
+              <line x1="170" y1="117" x2="170" y2="123" stroke="#1e293b" stroke-width="1"/>
+              <line x1="117" y1="70" x2="123" y2="70" stroke="#1e293b" stroke-width="1"/>
+              <!-- Parabola -->
+              <path d="M 35 112 Q 120 18 205 112" stroke="#6366f1" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- Axis of symmetry dashed -->
+              <line x1="120" y1="18" x2="120" y2="120" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+              <!-- Vertex -->
+              <circle cx="120" cy="18" r="5" fill="#f59e0b" opacity="0.9"/>
+              <!-- Vertex label -->
+              <rect x="128" y="10" width="30" height="14" rx="2" fill="#1a1500" opacity="0.8"/>
+              <text x="132" y="20" fill="#f59e0b" font-size="9" font-family="monospace">vertex</text>
+              <!-- Axis label -->
+              <rect x="126" y="68" width="22" height="12" rx="2" fill="#1a1500" opacity="0.8"/>
+              <text x="129" y="77" fill="#f59e0b" font-size="8" font-family="monospace">x = h</text>
+              <!-- Axis arrows -->
+              <text x="224" y="124" fill="#334155" font-size="9" font-family="monospace">x</text>
+              <text x="123" y="8" fill="#334155" font-size="9" font-family="monospace">y</text>
+            </svg>
+          </div>
+
+          <!-- Key points row -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+            <div style="background: #0d0d1e; border-radius: 4px; padding: 7px 9px; border: 1px solid #1e1e3a;">
+              <div style="color: #f59e0b; font-size: 9px; font-weight: 700; margin-bottom: 3px;">Vertex (h, k)</div>
+              <div style="color: #64748b; font-size: 9px; line-height: 1.3;">Min/max point of the parabola</div>
+            </div>
+            <div style="background: #0d0d1e; border-radius: 4px; padding: 7px 9px; border: 1px solid #1e1e3a;">
+              <div style="color: #6366f1; font-size: 9px; font-weight: 700; margin-bottom: 3px;">a &gt; 0 opens ↑</div>
+              <div style="color: #64748b; font-size: 9px; line-height: 1.3;">a &lt; 0 opens ↓</div>
+            </div>
+            <div style="background: #0d0d1e; border-radius: 4px; padding: 7px 9px; border: 1px solid #1e1e3a;">
+              <div style="color: #22c55e; font-size: 9px; font-weight: 700; margin-bottom: 3px;">SAT tip ★</div>
+              <div style="color: #64748b; font-size: 9px; line-height: 1.3;">Read vertex directly from equation</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: 30% width, split 50/50 -->
+      <div style="width: 30%; display: flex; flex-direction: column;">
+
+        <!-- TOP: Digital Human 50% -->
+        <div style="height: 50%; border-bottom: 1px solid #1a1a28; position: relative; overflow: hidden; background: #06060e;">
+          <!-- Label -->
+          <div style="position: absolute; top: 6px; left: 8px; color: #334155; font-size: 8px; text-transform: uppercase; letter-spacing: 0.8px; z-index: 2;">Instructor</div>
+          <!-- Avatar -->
+          <div style="height: 100%; display: flex; align-items: flex-end; justify-content: center;">
+            <div style="display: flex; flex-direction: column; align-items: center; padding-bottom: 8px;">
+              <div style="width: 38px; height: 38px; background: linear-gradient(135deg, #2d3748, #1a202c); border-radius: 50%; margin-bottom: 3px; border: 2px solid #4a5568;"></div>
+              <div style="width: 54px; height: 62px; background: linear-gradient(180deg, #1a365d 0%, #0a1628 100%); border-radius: 8px 8px 0 0; border: 1px solid #2a4a7f;"></div>
+            </div>
+          </div>
+          <!-- Speaking wave -->
+          <div style="position: absolute; bottom: 8px; left: 0; right: 0; display: flex; justify-content: center; gap: 2px; align-items: flex-end; height: 14px;">
+            <div style="width: 3px; height: 5px; background: #6366f1; border-radius: 1px; opacity: 0.5;"></div>
+            <div style="width: 3px; height: 11px; background: #6366f1; border-radius: 1px; opacity: 0.9;"></div>
+            <div style="width: 3px; height: 8px; background: #6366f1; border-radius: 1px; opacity: 0.7;"></div>
+            <div style="width: 3px; height: 13px; background: #6366f1; border-radius: 1px;"></div>
+            <div style="width: 3px; height: 7px; background: #6366f1; border-radius: 1px; opacity: 0.6;"></div>
+            <div style="width: 3px; height: 10px; background: #6366f1; border-radius: 1px; opacity: 0.8;"></div>
+          </div>
+        </div>
+
+        <!-- BOTTOM: Student 50% -->
+        <div style="height: 50%; position: relative; overflow: hidden; background: #040408;">
+          <!-- Label -->
+          <div style="position: absolute; top: 6px; left: 8px; color: #334155; font-size: 8px; text-transform: uppercase; letter-spacing: 0.8px; z-index: 2;">Student</div>
+          <!-- Webcam silhouette -->
+          <div style="height: 100%; display: flex; align-items: flex-end; justify-content: center;">
+            <div style="display: flex; flex-direction: column; align-items: center; padding-bottom: 8px;">
+              <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #374151, #1f2937); border-radius: 50%; margin-bottom: 3px; border: 1.5px solid #4b5563;"></div>
+              <div style="width: 44px; height: 50px; background: linear-gradient(180deg, #374151 0%, #111827 100%); border-radius: 7px 7px 0 0; border: 1px solid #374151;"></div>
+            </div>
+          </div>
+          <!-- Mic muted indicator -->
+          <div style="position: absolute; bottom: 7px; right: 7px; width: 18px; height: 18px; background: #1f2937; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #374151;">
+            <div style="width: 5px; height: 8px; background: #4b5563; border-radius: 2px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom: minimal controls -->
+    <div style="background: #0d0d18; padding: 8px 14px; display: flex; gap: 8px; align-items: center; border-top: 1px solid #1a1a28;">
+      <div style="display: flex; gap: 6px;">
+        <div style="width: 24px; height: 24px; background: #6366f1; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white;">▶</div>
+        <div style="width: 24px; height: 24px; background: #1a1a28; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #64748b;">🔊</div>
+        <div style="width: 24px; height: 24px; background: #1a1a28; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #64748b;">🎤</div>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 6px;">
+        <div style="background: #1a1a28; border: 1px solid #2d2d4a; color: #a5b4fc; font-size: 9px; padding: 3px 10px; border-radius: 4px; cursor: pointer;">✋ 提问</div>
+        <div style="background: #1a1a28; border: 1px solid #2d2d4a; color: #64748b; font-size: 9px; padding: 3px 10px; border-radius: 4px; cursor: pointer;">⋯</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align: center; color: #334155; font-size: 10px; margin-top: 8px;">讲义区 70% · 右侧 30%（数字人 : 学生 = 1:1）</p>
+</div>

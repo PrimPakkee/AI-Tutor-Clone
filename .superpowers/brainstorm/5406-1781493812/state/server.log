@@ -1,0 +1,6 @@
+{"type":"server-started","port":64750,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:64750","screen_dir":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/5406-1781493812/content","state_dir":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/5406-1781493812/state"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/5406-1781493812/content/approaches.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/5406-1781493812/content/layout.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/5406-1781493812/content/layout-v2.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/5406-1781493812/content/layout-v3.html"}
+{"type":"server-stopped","reason":"idle timeout"}

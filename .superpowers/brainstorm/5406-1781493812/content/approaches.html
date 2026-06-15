@@ -1,0 +1,43 @@
+<h2>架构方案选择</h2>
+<p class="subtitle">三种方案，权衡开发速度 vs 功能完整性</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>静态视频 Demo</h3>
+      <p><strong>最快出效果，1-2天可完成</strong></p>
+      <p>数字人用预录 MP4 视频直接嵌入页面，JSON 时间轴驱动视频进度 + 讲义翻页同步。学生摄像头用浏览器原生 API。不接 ZEGO，无后端。</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>优点</h4><ul><li>零 API 依赖，最快交付</li><li>纯前端，部署简单</li><li>演示完整三分屏效果</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>无真实 RTC 互动</li><li>数字人是死视频，不能实时回应</li><li>demo 结束后要重建</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>完整 ZEGO 混合方案 ⭐ 推荐</h3>
+      <p><strong>真实可用的产品架构，适合正式 demo</strong></p>
+      <p>录播段：ZEGO 数字人离线生成视频流式播放；互动段：ZEGO Streaming Avatar RTC 实时数字人。JSON 时间轴控制两种模式切换 + 讲义同步。Next.js API Routes 管理课程编排。</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>优点</h4><ul><li>真实技术栈，可直接演进为产品</li><li>数字人互动段有真实 RTC</li><li>架构完整，可扩展</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>依赖 ZEGO API，需先调通</li><li>开发周期约 1 周</li><li>需要后端 API Routes</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>前端 Player + ZEGO 仅 RTC</h3>
+      <p><strong>折中方案，突出互动体验</strong></p>
+      <p>录播段用本地预录视频，互动段切换到 ZEGO Streaming Avatar。只集成 ZEGO 的 RTC 部分，时间轴完全在客户端驱动，无后端。</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>优点</h4><ul><li>有真实 ZEGO 数字人互动</li><li>无需后端</li><li>复杂度适中</li></ul></div>
+        <div class="cons"><h4>缺点</h4><ul><li>录播段仍是 mock 视频</li><li>后期需重构后端部分</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

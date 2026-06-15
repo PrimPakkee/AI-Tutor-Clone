@@ -1,0 +1,11 @@
+{"type":"server-started","port":60280,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:60280","screen_dir":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content","state_dir":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/state"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v3.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v4.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v5.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v6.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v7.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v8.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v9.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/layout-v10.html"}
+{"type":"screen-added","file":"/Users/tal/Work/claudecode/ai tutor/.superpowers/brainstorm/9521-1781503696/content/waiting.html"}
+{"type":"server-stopped","reason":"idle timeout"}
