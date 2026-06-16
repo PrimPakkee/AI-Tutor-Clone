@@ -7,9 +7,10 @@ type Props = {
   playerState: PlayerState
   instructorName: string
   elapsed: number
+  segmentStartTime?: number
   liveVideoElId?: string
   speakerMuted?: boolean
-  onVideoTimeUpdate?: (currentTime: number) => void
+  onVideoTimeUpdate?: (absoluteTime: number) => void
 }
 
 export function AvatarPanel({
@@ -17,6 +18,7 @@ export function AvatarPanel({
   playerState,
   instructorName,
   elapsed: _elapsed,
+  segmentStartTime = 0,
   liveVideoElId,
   speakerMuted = false,
   onVideoTimeUpdate,
@@ -57,7 +59,14 @@ export function AvatarPanel({
           src={avatarVideoUrl}
           className={`absolute inset-0 w-full h-full object-cover object-top ${isLive ? 'hidden' : ''}`}
           playsInline
-          onTimeUpdate={() => onVideoTimeUpdate?.(videoRef.current?.currentTime ?? 0)}
+          onTimeUpdate={() => {
+            const t = videoRef.current?.currentTime ?? 0
+            onVideoTimeUpdate?.(segmentStartTime + t)
+          }}
+          onEnded={() => {
+            const dur = videoRef.current?.duration ?? 0
+            onVideoTimeUpdate?.(segmentStartTime + dur)
+          }}
           onError={() => console.warn('[AvatarPanel] Video failed to load:', avatarVideoUrl)}
         />
       )}

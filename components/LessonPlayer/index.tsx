@@ -78,6 +78,7 @@ export function LessonPlayer({
               playerState={playerState}
               instructorName={instructorName}
               elapsed={0}
+              segmentStartTime={currentSegment?.startTime ?? 0}
               liveVideoElId={AVATAR_LIVE_EL_ID}
               speakerMuted={speakerMuted}
               onVideoTimeUpdate={setElapsed}
