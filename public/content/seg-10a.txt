@@ -1,0 +1,1 @@
+Question three. The function h of t equals negative 16t squared plus 80t plus 6 gives the height, in feet, of a ball at time t seconds after it's thrown upward. What is the maximum height of the ball?

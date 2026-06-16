@@ -1,11 +1,3 @@
-Standard form: f of x equals ax squared plus bx plus c. Let's go through each piece.
-
-a — the leading coefficient. Two things. First, its sign determines direction. Positive a: opens up, vertex is the minimum. Negative a: opens down, vertex is the maximum. This is probably the most common single fact the SAT tests about quadratics — can you tell whether a function has a minimum or maximum? Look at the sign of a and you're done.
-
-Second, the size of a affects the shape. Larger absolute value means narrower parabola. Smaller absolute value means wider. This detail shows up less often, but it helps when you're reading graphs.
-
-c — the constant term. This is the y-intercept, pure and simple. Set x equal to zero, every term with an x vanishes, and you're left with c. The parabola crosses the y-axis at zero comma c.
-
 b — the middle coefficient. Unlike a and c, b doesn't have a meaning you can just read off. But it's half of the axis of symmetry formula: x equals negative b over 2a. Memorize this formula right now. You will use it every time you need the vertex or axis from standard form.
 
 Once you have the axis of symmetry x-value, the vertex y-coordinate is just f of that x. Plug it in. So in standard form:

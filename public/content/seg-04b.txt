@@ -1,0 +1,3 @@
+The y-intercept. Where the parabola crosses the y-axis. In standard form it's c. In vertex form plug in x equals zero.
+
+Quick visual logic check for any quadratic: sign of a gives direction. Vertex position relative to the x-axis tells you root count — vertex below x-axis and opening up means two roots, vertex on the axis means one, vertex above and opening up means none. Flip the logic for opening down. This kind of spatial reasoning is faster than formula-checking when you're looking at a graph and picking among answer choices.

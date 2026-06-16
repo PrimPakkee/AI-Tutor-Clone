@@ -1,5 +1,3 @@
-Question three. The function h of t equals negative 16t squared plus 80t plus 6 gives the height, in feet, of a ball at time t seconds after it's thrown upward. What is the maximum height of the ball?
-
 Standard form. a is negative 16 — negative, so it opens down. This makes sense for a projectile. The vertex gives the maximum height. That's the goal.
 
 Axis formula for the time at max height. t equals negative b over 2a. b is 80, a is negative 16. t equals negative 80 over 2 times negative 16, which is negative 80 over negative 32, equals 2.5 seconds.

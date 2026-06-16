@@ -1,0 +1,11 @@
+The discriminant — b squared minus 4ac. This is the expression under the square root in the quadratic formula. It tells you exactly how many real solutions an equation has, without making you solve anything.
+
+Three cases.
+
+Positive discriminant: the square root is a real positive number. Plus and minus give two different results. Two distinct real roots. The parabola crosses the x-axis twice.
+
+Zero discriminant: the square root is zero. Plus zero and minus zero give the same result. One real root — a repeated root. The vertex sits exactly on the x-axis.
+
+Negative discriminant: you'd need the square root of a negative number, which isn't real. No real roots. The parabola doesn't touch the x-axis.
+
+You don't have to solve the equation to know this. Just calculate b squared minus 4ac and check the sign. That's the shortcut.
