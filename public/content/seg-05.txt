@@ -1,0 +1,19 @@
+Here's the vertex shortcut in practice — five equations, fast reads.
+
+f of x equals 2 times x minus 1 squared plus 5. Vertex: 1 comma 5. Opens up, minimum 5.
+
+f of x equals negative x plus 4 squared plus 2. x plus 4 means h is negative 4. Vertex: negative 4 comma 2. Opens down, maximum 2.
+
+f of x equals x minus 3 squared. k is 0. Vertex: 3 comma 0. Vertex on x-axis — one root at x equals 3. Opens up, minimum 0.
+
+f of x equals negative 0.5 times x minus 2 squared minus 7. Vertex: 2 comma negative 7. Opens down, maximum negative 7.
+
+f of x equals 4 times x plus 1 squared. h is negative 1, k is 0. Vertex: negative 1 comma 0. Opens up, minimum 0. One root.
+
+That's the whole skill. Read the form, state the vertex, note direction, state min or max. Do this until it takes you under ten seconds per equation.
+
+The SAT also flips the question. They give you the vertex and one other point on the parabola, and ask for the equation or for the value of a. The move: plug the vertex into the vertex form template — f of x equals a times x minus h squared plus k — then substitute the other point to solve for a. Two steps.
+
+For example: a parabola has vertex at 2 comma 3 and passes through the point 4 comma 11. Find a. Plug into vertex form: 11 equals a times 4 minus 2 squared plus 3. 11 equals 4a plus 3. 4a equals 8. a equals 2. Equation: 2 times x minus 2 squared plus 3.
+
+Straightforward substitution. Don't overthink it.

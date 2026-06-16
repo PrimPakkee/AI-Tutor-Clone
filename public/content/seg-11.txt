@@ -1,0 +1,13 @@
+Let's take a step back. Here's what you've covered today.
+
+Standard form: f of x equals ax squared plus bx plus c. Sign of a gives direction and tells you min versus max. Axis of symmetry is x equals negative b over 2a. y-intercept is c. Completing the square converts it to vertex form.
+
+Vertex form: f of x equals a times x minus h squared plus k. Vertex is h comma k, read directly. Sign of h is flipped — watch that. Axis is x equals h.
+
+The discriminant: b squared minus 4ac. Positive means two real roots, zero means one, negative means none. Use it to answer root-count questions and to set up constant-finding problems.
+
+Three SAT problem types you can now handle quickly. Minimum or maximum from vertex form — read k, check sign of a, done. Axis of symmetry from standard form — use negative b over 2a. Word problem with quadratic model — identify the vertex question, apply axis formula, evaluate.
+
+If any of this felt shaky, the completing the square steps and the vertex form sign rules are the highest-leverage things to practice. Those two things unlock most of the harder quadratic questions on the SAT.
+
+Any questions before we wrap up? The next section is open — ask anything.

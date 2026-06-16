@@ -1,0 +1,24 @@
+Vertex form: f of x equals a times x minus h, squared, plus k. The vertex is h comma k. That's it — you read it straight from the equation.
+
+One catch. Look at the form: x minus h. The h is subtracted. So the sign you see is the opposite of h.
+
+If you see x minus 4, then h equals positive 4.
+If you see x plus 3 — which is the same as x minus negative 3 — then h equals negative 3.
+
+The sign flips. This is the most common mistake with vertex form, and the SAT uses it on purpose. k has no trick: whatever's at the end, that's your vertex y-value.
+
+A few quick examples to lock this in.
+
+f of x equals 3 times x minus 4 squared plus 7. Vertex: 4 comma 7. a is positive 3, opens up, minimum. Minimum value: 7. Axis: x equals 4.
+
+f of x equals negative 2 times x plus 5 squared minus 1. x plus 5 means h is negative 5. k is negative 1. Vertex: negative 5 comma negative 1. a negative, opens down, maximum. Maximum value: negative 1. Axis: x equals negative 5.
+
+f of x equals x minus 1 squared. No written coefficient, so a is 1. No constant at the end, so k is 0. Vertex: 1 comma 0. Vertex sits right on the x-axis, which means there's exactly one root, at x equals 1.
+
+The axis of symmetry in vertex form is just x equals h. Same x-coordinate as the vertex.
+
+Converting from vertex form back to standard form: expand the binomial, multiply through by a, collect terms. Mechanical.
+
+Going the other direction — standard to vertex — requires completing the square, which you just learned.
+
+On the SAT, vertex form problems almost always ask you to read information off the equation. Given the form, identify the vertex, axis, or min/max. The speed is the point. Once you've practiced enough that the sign-flip on h is reflex, these questions take under thirty seconds.

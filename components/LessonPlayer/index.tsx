@@ -46,6 +46,7 @@ export function LessonPlayer({
   })
 
   const [toast, setToast] = useState<string | null>(null)
+  const [speakerMuted, setSpeakerMuted] = useState(false)
 
   const currentSlide = lesson.slides.find((s) => s.index === currentSlideIndex)
   const currentSlideRef = currentSegment?.type === 'stream' ? currentSegment.slide : null
@@ -78,6 +79,7 @@ export function LessonPlayer({
               instructorName={instructorName}
               elapsed={0}
               liveVideoElId={AVATAR_LIVE_EL_ID}
+              speakerMuted={speakerMuted}
               onVideoTimeUpdate={setElapsed}
             />
           </div>
@@ -89,6 +91,7 @@ export function LessonPlayer({
               studentName={studentName}
               canRaiseHand={canRaiseHand}
               quotaExhausted={quotaRemainingSeconds === 0}
+              quotaRemainingSeconds={quotaRemainingSeconds}
               localVideoElId={STUDENT_LOCAL_EL_ID}
               onRaiseHand={raiseHand}
               onMicToggle={(muted) => {
@@ -99,6 +102,7 @@ export function LessonPlayer({
                 liveSession.muteVideo(off)
                 if (off) setToast('Camera off')
               }}
+              onVolumeToggle={(muted) => setSpeakerMuted(muted)}
             />
           </div>
 

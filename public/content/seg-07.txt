@@ -1,0 +1,9 @@
+Time for actual SAT problems. Three questions, full walkthroughs.
+
+Question one. The function f is defined by f of x equals 2 times x plus 3, squared, minus 8. What is the minimum value of f of x?
+
+That's the whole question. Try it before the solution.
+
+If you're not sure where to start: what form is this in? What does that form show you directly? Does this function have a minimum or a maximum, and how do you know?
+
+Work it out, then keep going.

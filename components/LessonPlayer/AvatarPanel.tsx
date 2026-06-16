@@ -8,6 +8,7 @@ type Props = {
   instructorName: string
   elapsed: number
   liveVideoElId?: string
+  speakerMuted?: boolean
   onVideoTimeUpdate?: (currentTime: number) => void
 }
 
@@ -17,6 +18,7 @@ export function AvatarPanel({
   instructorName,
   elapsed: _elapsed,
   liveVideoElId,
+  speakerMuted = false,
   onVideoTimeUpdate,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -32,6 +34,10 @@ export function AvatarPanel({
       video.pause()
     }
   }, [playerState, avatarVideoUrl])
+
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.muted = speakerMuted
+  }, [speakerMuted])
 
   const isSpeaking = playerState === 'STREAMING' || playerState === 'LIVE_INSTRUCTOR'
 

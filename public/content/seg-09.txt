@@ -1,0 +1,13 @@
+Solution to question two. g of x equals x squared minus 6x plus 5.
+
+Method one, the formula. Axis of symmetry: x equals negative b over 2a. a is 1, b is negative 6. x equals negative of negative 6, over 2 times 1. That's 6 over 2, equals 3. Axis: x equals 3.
+
+Method two, completing the square. Half of negative 6 is negative 3, squared is 9. Add and subtract 9: x squared minus 6x plus 9, minus 9, plus 5. Factor: x minus 3, squared. Simplify: minus 9 plus 5 is minus 4. Result: x minus 3 squared minus 4. Vertex at 3 comma negative 4. Axis: x equals 3.
+
+Same answer.
+
+The formula is faster for the axis alone. Completing the square takes longer but gives you more — vertex and minimum too. For this question, the formula wins. But notice: when you complete the square you also get the vertex at 3 comma negative 4 and the minimum value of negative 4. If the SAT had asked either of those as a follow-up, you'd already be done.
+
+When you're completing the square anyway, write down everything the vertex form tells you. You'll often need it.
+
+Now question three — a word problem.

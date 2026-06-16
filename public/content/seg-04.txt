@@ -1,0 +1,11 @@
+Let's map out the key parts of a parabola, because the SAT references all of them.
+
+The vertex. The turning point — bottom if the parabola opens up, top if it opens down. Its y-coordinate is the minimum or maximum value of the function.
+
+The axis of symmetry. A vertical line through the vertex, x equals h. The parabola is a perfect mirror on both sides. If there's a point on the parabola that's 3 units to the right of the axis, there's a matching point 3 units to the left at the same height. The SAT sometimes uses this mirror property to set up problems where you need to find an unknown x-coordinate from a known one.
+
+The roots. Also called zeros or x-intercepts — where f of x equals zero, where the parabola crosses the x-axis. Two roots, one root, or none. The roots are always symmetric about the axis of symmetry, so if you know one root and the axis, you can find the other without solving the equation.
+
+The y-intercept. Where the parabola crosses the y-axis. In standard form it's c. In vertex form plug in x equals zero.
+
+Quick visual logic check for any quadratic: sign of a gives direction. Vertex position relative to the x-axis tells you root count — vertex below x-axis and opening up means two roots, vertex on the axis means one, vertex above and opening up means none. Flip the logic for opening down. This kind of spatial reasoning is faster than formula-checking when you're looking at a graph and picking among answer choices.

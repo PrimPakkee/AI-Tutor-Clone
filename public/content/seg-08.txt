@@ -1,0 +1,15 @@
+Solution to question one. f of x equals 2 times x plus 3, squared, minus 8.
+
+The equation is in vertex form. Read the vertex. x plus 3 means h is negative 3. The constant at the end is negative 8, so k is negative 8. Vertex: negative 3 comma negative 8.
+
+Minimum or maximum? a is 2. Positive. Opens up. Vertex is the minimum.
+
+Minimum value of f: negative 8. Done.
+
+No algebra. No expanding. You read the vertex from the form, checked the sign of a, and wrote down k. Under thirty seconds.
+
+Compare to the standard form approach: expand to get 2x squared plus 12x plus 10, apply the axis formula to get x equals negative 3, plug back in to get 2 of 9 minus 36 plus 10 equals negative 8. Same answer, four times the work. Vertex form is faster. Use it whenever you see it.
+
+Now question two. The function g is defined by g of x equals x squared minus 6x plus 5. What is the equation of the axis of symmetry of the graph of g in the xy-plane?
+
+Standard form this time. Two valid approaches: the axis formula, or completing the square. Think about which one you'd use and try it.

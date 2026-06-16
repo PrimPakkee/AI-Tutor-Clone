@@ -1,0 +1,13 @@
+Question three. The function h of t equals negative 16t squared plus 80t plus 6 gives the height, in feet, of a ball at time t seconds after it's thrown upward. What is the maximum height of the ball?
+
+Standard form. a is negative 16 — negative, so it opens down. This makes sense for a projectile. The vertex gives the maximum height. That's the goal.
+
+Axis formula for the time at max height. t equals negative b over 2a. b is 80, a is negative 16. t equals negative 80 over 2 times negative 16, which is negative 80 over negative 32, equals 2.5 seconds.
+
+Now plug t equals 2.5 into h. h of 2.5 equals negative 16 times 6.25 plus 80 times 2.5 plus 6. Negative 100 plus 200 plus 6 equals 106.
+
+Maximum height: 106 feet.
+
+Two things to watch for on word problems like this. First, the question asks for maximum height — a value in feet, not a time. You need h, not t. Plugging into the axis formula gives you t. You still need to evaluate h at that t. Students often stop too early and submit the t value. Don't.
+
+Second, the phrase "models the height" is a signal. Quadratic models in physics or real-world contexts almost always come with a vertex question — maximum height, minimum cost, optimal time. When you see a quadratic word problem, look for a vertex question immediately.

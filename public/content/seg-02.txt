@@ -1,0 +1,35 @@
+Standard form: f of x equals ax squared plus bx plus c. Let's go through each piece.
+
+a — the leading coefficient. Two things. First, its sign determines direction. Positive a: opens up, vertex is the minimum. Negative a: opens down, vertex is the maximum. This is probably the most common single fact the SAT tests about quadratics — can you tell whether a function has a minimum or maximum? Look at the sign of a and you're done.
+
+Second, the size of a affects the shape. Larger absolute value means narrower parabola. Smaller absolute value means wider. This detail shows up less often, but it helps when you're reading graphs.
+
+c — the constant term. This is the y-intercept, pure and simple. Set x equal to zero, every term with an x vanishes, and you're left with c. The parabola crosses the y-axis at zero comma c.
+
+b — the middle coefficient. Unlike a and c, b doesn't have a meaning you can just read off. But it's half of the axis of symmetry formula: x equals negative b over 2a. Memorize this formula right now. You will use it every time you need the vertex or axis from standard form.
+
+Once you have the axis of symmetry x-value, the vertex y-coordinate is just f of that x. Plug it in. So in standard form:
+
+Axis of symmetry: x equals negative b over 2a.
+Vertex: the point negative b over 2a, f of negative b over 2a.
+y-intercept: c.
+
+Now let's cover completing the square — the technique that converts standard form into vertex form. The SAT tests it directly, so the steps need to be automatic.
+
+Example: x squared minus 6x plus 5.
+
+Step one. Take the coefficient of x, which is negative 6. Divide by 2: negative 3. Square it: 9.
+
+Step two. Add and subtract 9 inside the expression. You get x squared minus 6x plus 9, minus 9, plus 5. Adding and subtracting the same number changes nothing.
+
+Step three. The first three terms — x squared minus 6x plus 9 — form a perfect square trinomial. It factors as x minus 3, squared.
+
+Step four. Simplify the leftover constants: negative 9 plus 5 is negative 4.
+
+Final result: x minus 3, squared, minus 4. Vertex form, vertex at 3 comma negative 4.
+
+The pattern is always the same: take half of b, square it, add and subtract, factor, simplify. Practice this until you can do it in under two minutes.
+
+One complication: if a is not equal to 1, factor it out of the first two terms before completing the square. Example: 2x squared minus 8x plus 3. Factor 2 from the first two terms: 2 times the quantity x squared minus 4x, plus 3. Complete the square on x squared minus 4x. Half of negative 4 is negative 2, squared is 4. Add and subtract inside the parentheses: 2 times the quantity x minus 2 squared minus 4, plus 3. Distribute the 2 to the negative 4: 2 times x minus 2 squared, minus 8 plus 3, which is 2 times x minus 2 squared, minus 5. Vertex at 2 comma negative 5.
+
+Same steps, just with the factor-out first. Get comfortable with both the a-equals-one version and the a-not-one version.

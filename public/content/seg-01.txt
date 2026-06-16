@@ -1,0 +1,15 @@
+A quadratic function looks like this: f of x equals ax squared plus bx plus c, where a is not zero. The graph is always a parabola — that symmetrical U-shape that either opens up or opens down. The direction depends entirely on the sign of a. That's your starting point.
+
+The SAT gives you quadratics in two forms. Standard form: f of x equals ax squared plus bx plus c. Vertex form: f of x equals a times the quantity x minus h, squared, plus k. Same function, different packaging — and each one makes different information easy to spot.
+
+Standard form puts the y-intercept right in front of you. It's just c — plug in x equals zero and everything else drops out. Vertex form puts the vertex right in front of you. The vertex is the point h comma k. No calculation needed.
+
+Why does this matter? Because the SAT loves giving you one form and asking about something that's easier to read from the other. Recognizing which form you're looking at, and knowing what each one reveals, is half the battle.
+
+One concept that runs through everything: the vertex is either the minimum or maximum of the function. If a is positive, the parabola opens up and the vertex is the lowest point — the minimum. If a is negative, it opens down and the vertex is the highest point — the maximum. When the SAT asks for the minimum value or maximum value of a quadratic, they always mean the y-coordinate of the vertex. Always.
+
+The axis of symmetry is the vertical line through the vertex that splits the parabola into two perfect mirror halves. In standard form it's x equals negative b over 2a. In vertex form it's x equals h. Both expressions describe the same line — they're different ways of writing the same equation.
+
+The roots — also called zeros or x-intercepts — are where the parabola hits the x-axis, where f of x equals zero. A parabola can cross the x-axis twice, once, or not at all. The discriminant tells you which case you're dealing with, and we'll get to that in its own section.
+
+That's the big picture. Next up: standard form in detail.
