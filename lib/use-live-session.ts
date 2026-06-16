@@ -118,6 +118,7 @@ export function useLiveSession({
           // prompt = LLM system instruction (role definition, NOT the question)
           // welcome = the opening question the avatar says aloud
           const systemPrompt = avatarChatCfg?.prompt ||
+            activeLiveSeg.systemPrompt ||
             `You are Emily, an AI SAT math tutor. Answer the student's questions about: "${activeLiveSeg.prompt}". Be concise and encouraging. Respond in the student's language.`
           const startPayload = {
             prompt: systemPrompt,

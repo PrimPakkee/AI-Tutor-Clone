@@ -46,6 +46,7 @@ export type InstructorLiveSegment = {
   trigger: { at: number }
   timeout: number
   prompt: string
+  systemPrompt?: string
   slide: SlideRef
 }
 
