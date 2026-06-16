@@ -36,7 +36,6 @@ export type StreamSegment = {
   duration: number
   avatarVideoUrl: string
   slide: SlideRef
-  script: string
 }
 
 export type InstructorLiveSegment = {

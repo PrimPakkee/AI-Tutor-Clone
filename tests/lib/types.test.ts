@@ -9,7 +9,6 @@ describe('Lesson type shape', () => {
       duration: 300,
       avatarVideoUrl: '/content/seg-01.mp4',
       slide: { index: 1, highlights: [] },
-      script: 'Welcome to quadratic functions.',
     }
     expect(seg.type).toBe('stream')
   })

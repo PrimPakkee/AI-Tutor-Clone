@@ -6,12 +6,12 @@ import type { Lesson } from '@/lib/types'
 
 const lesson = lessonData as Lesson
 
-// Build slide-index → narration script from stream segments
-function buildScriptMap(l: Lesson): Record<number, string> {
+// Map slide-index → segment id so we can fetch the .txt narration file
+function buildSegmentIdMap(l: Lesson): Record<number, string> {
   const map: Record<number, string> = {}
   for (const seg of l.segments) {
-    if ('script' in seg && seg.script && 'slide' in seg) {
-      map[(seg as any).slide.index] = seg.script
+    if (seg.type === 'stream') {
+      map[seg.slide.index] = seg.id
     }
   }
   return map
@@ -22,12 +22,22 @@ export default function SlidesTestPage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [autoPlay, setAutoPlay] = useState(true)
   const [showScript, setShowScript] = useState(false)
+  const [script, setScript] = useState<string | null>(null)
   const synthRef = useRef<SpeechSynthesisUtterance | null>(null)
 
   const slides = lesson.slides
   const slide = slides[index]
-  const scriptMap = useMemo(() => buildScriptMap(lesson), [])
-  const script = scriptMap[slide.index]
+  const segmentIdMap = useMemo(() => buildSegmentIdMap(lesson), [])
+
+  // Fetch narration from public/content/<id>.txt (录播脚本)
+  useEffect(() => {
+    const segId = segmentIdMap[slide.index]
+    if (!segId) { setScript(null); return }
+    fetch(`/content/${segId}.txt`)
+      .then((r) => (r.ok ? r.text() : null))
+      .then((text) => setScript(text ?? null))
+      .catch(() => setScript(null))
+  }, [slide.index, segmentIdMap])
 
   const speak = useCallback((text: string) => {
     if (typeof window === 'undefined' || !window.speechSynthesis) return
@@ -54,14 +64,13 @@ export default function SlidesTestPage() {
     setIsPlaying(false)
   }, [])
 
-  // Auto-play narration on slide change
+  // Auto-play narration once script is fetched
   useEffect(() => {
     if (!autoPlay || !script) { stopSpeech(); return }
-    // Small delay so slide animation starts first
     const t = setTimeout(() => speak(script), 400)
     return () => { clearTimeout(t); stopSpeech() }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, autoPlay])
+  }, [script, autoPlay])
 
   function goTo(i: number) {
     stopSpeech()

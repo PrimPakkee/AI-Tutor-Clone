@@ -19,7 +19,6 @@ const mockLesson: Lesson = {
       duration: 300,
       avatarVideoUrl: '/seg-01.mp4',
       slide: { index: 1, highlights: [] },
-      script: 'Hello',
     },
     {
       id: 'live-01',
@@ -37,7 +36,6 @@ const mockLesson: Lesson = {
       duration: 300,
       avatarVideoUrl: '/seg-02.mp4',
       slide: { index: 2, highlights: [] },
-      script: 'More content',
     },
   ],
 }
