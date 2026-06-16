@@ -7,6 +7,7 @@ type Props = {
   playerState: PlayerState
   instructorName: string
   elapsed: number
+  liveVideoElId?: string
   onVideoTimeUpdate?: (currentTime: number) => void
 }
 
@@ -15,9 +16,12 @@ export function AvatarPanel({
   playerState,
   instructorName,
   elapsed: _elapsed,
+  liveVideoElId,
   onVideoTimeUpdate,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  const isLive = playerState === 'LIVE_INSTRUCTOR' || playerState === 'LIVE_STUDENT'
 
   useEffect(() => {
     const video = videoRef.current
@@ -33,19 +37,32 @@ export function AvatarPanel({
 
   return (
     <div className="flex-1 relative overflow-hidden bg-[#e8dfd4]">
+      {/* Static instructor image — always visible as base layer */}
+      <img
+        src="/instructor.png"
+        alt={instructorName}
+        className="absolute inset-0 w-full h-full object-cover object-top"
+      />
+
+      {/* Pre-recorded avatar video — overlays static image when playing */}
       {avatarVideoUrl && (
         <video
           ref={videoRef}
           src={avatarVideoUrl}
-          className="w-full h-full object-cover object-top"
+          className={`absolute inset-0 w-full h-full object-cover object-top ${isLive ? 'hidden' : ''}`}
           playsInline
           onTimeUpdate={() => onVideoTimeUpdate?.(videoRef.current?.currentTime ?? 0)}
           onError={() => console.warn('[AvatarPanel] Video failed to load:', avatarVideoUrl)}
         />
       )}
 
-      {(playerState === 'LIVE_INSTRUCTOR' || playerState === 'LIVE_STUDENT') && (
-        <div className="absolute inset-0 flex items-center justify-center">
+      {/* OmniRTC live avatar stream — overlays static image while AIGC connects */}
+      {isLive && liveVideoElId && (
+        <div id={liveVideoElId} className="absolute inset-0 w-full h-full" />
+      )}
+
+      {isLive && (
+        <div className="absolute top-2 left-0 right-0 flex justify-center pointer-events-none">
           <div className="bg-indigo-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow">
             LIVE
           </div>

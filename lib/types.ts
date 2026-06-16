@@ -4,10 +4,18 @@ export type GraphSpec = {
   direction: 'up' | 'down'
 }
 
+export type SolutionData = {
+  steps: string[]
+  answer: string
+}
+
 export type SlideContent = {
   formula?: string | null
   bullets?: string[]
   graph?: GraphSpec | null
+  correctChoice?: string | null
+  variant?: string | null
+  solution?: SolutionData | null
 }
 
 export type Slide = {

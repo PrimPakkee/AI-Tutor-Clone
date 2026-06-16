@@ -7,6 +7,7 @@ type Props = {
   studentName: string
   canRaiseHand: boolean
   quotaExhausted: boolean
+  localVideoElId?: string
   onRaiseHand: () => void
   onMicToggle: (muted: boolean) => void
   onCameraToggle: (off: boolean) => void
@@ -17,6 +18,7 @@ export function StudentPanel({
   studentName,
   canRaiseHand,
   quotaExhausted,
+  localVideoElId,
   onRaiseHand,
   onMicToggle,
   onCameraToggle,
@@ -26,7 +28,17 @@ export function StudentPanel({
   const [cameraOff, setCameraOff] = useState(false)
   const [volume] = useState(80)
 
+  const isLive = playerState === 'LIVE_INSTRUCTOR' || playerState === 'LIVE_STUDENT'
+
+  // getUserMedia runs in STREAMING; stops when OmniRTC takes over in LIVE
   useEffect(() => {
+    if (isLive) {
+      if (videoRef.current?.srcObject) {
+        ;(videoRef.current.srcObject as MediaStream).getTracks().forEach((t) => t.stop())
+        videoRef.current.srcObject = null
+      }
+      return
+    }
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
@@ -38,19 +50,24 @@ export function StudentPanel({
       .catch(() => {})
     return () => {
       if (videoRef.current?.srcObject) {
-        const tracks = (videoRef.current.srcObject as MediaStream).getTracks()
-        tracks.forEach((t) => t.stop())
+        ;(videoRef.current.srcObject as MediaStream).getTracks().forEach((t) => t.stop())
       }
     }
-  }, [])
-
-  const isLive = playerState === 'LIVE_INSTRUCTOR' || playerState === 'LIVE_STUDENT'
+  }, [isLive])
 
   return (
     <div className="flex-1 relative overflow-hidden bg-slate-700">
+      {/* OmniRTC container — always in DOM so track.play() can find it */}
+      {localVideoElId && (
+        <div
+          id={localVideoElId}
+          className={`absolute inset-0 w-full h-full ${!isLive ? 'hidden' : ''}`}
+        />
+      )}
+      {/* Local getUserMedia preview — visible in STREAMING, hidden in LIVE */}
       <video
         ref={videoRef}
-        className="w-full h-full object-cover object-top"
+        className={`w-full h-full object-cover object-top ${isLive ? 'hidden' : ''}`}
         playsInline
         muted
       />

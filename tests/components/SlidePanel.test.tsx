@@ -40,16 +40,12 @@ describe('SlidePanel', () => {
   })
 
   it('renders formula container when formula is provided', () => {
-    const { container } = render(
-      <SlidePanel slide={slideWithFormula} slideCount={12} highlights={[]} />
-    )
-    expect(container.querySelector('.formula-block')).toBeInTheDocument()
+    render(<SlidePanel slide={slideWithFormula} slideCount={12} highlights={[]} />)
+    expect(document.querySelector('[data-testid="formula-block"]')).toBeInTheDocument()
   })
 
   it('does not render formula block when formula is null', () => {
-    const { container } = render(
-      <SlidePanel slide={slideWithBulletsOnly} slideCount={12} highlights={[]} />
-    )
-    expect(container.querySelector('.formula-block')).not.toBeInTheDocument()
+    render(<SlidePanel slide={slideWithBulletsOnly} slideCount={12} highlights={[]} />)
+    expect(document.querySelector('[data-testid="formula-block"]')).not.toBeInTheDocument()
   })
 })
