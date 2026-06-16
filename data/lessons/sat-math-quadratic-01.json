@@ -259,6 +259,20 @@
       "script": "Standard form: f of x equals ax squared plus bx plus c. Let's go through each piece.\n\na — the leading coefficient. Two things. First, its sign determines direction. Positive a: opens up, vertex is the minimum. Negative a: opens down, vertex is the maximum. This is probably the most common single fact the SAT tests about quadratics — can you tell whether a function has a minimum or maximum? Look at the sign of a and you're done.\n\nSecond, the size of a affects the shape. Larger absolute value means narrower parabola. Smaller absolute value means wider. This detail shows up less often, but it helps when you're reading graphs.\n\nc — the constant term. This is the y-intercept, pure and simple. Set x equal to zero, every term with an x vanishes, and you're left with c. The parabola crosses the y-axis at zero comma c.\n\nb — the middle coefficient. Unlike a and c, b doesn't have a meaning you can just read off. But it's half of the axis of symmetry formula: x equals negative b over 2a. Memorize this formula right now. You will use it every time you need the vertex or axis from standard form.\n\nOnce you have the axis of symmetry x-value, the vertex y-coordinate is just f of that x. Plug it in. So in standard form:\n\nAxis of symmetry: x equals negative b over 2a.\nVertex: the point negative b over 2a, f of negative b over 2a.\ny-intercept: c.\n\nNow let's cover completing the square — the technique that converts standard form into vertex form. The SAT tests it directly, so the steps need to be automatic.\n\nExample: x squared minus 6x plus 5.\n\nStep one. Take the coefficient of x, which is negative 6. Divide by 2: negative 3. Square it: 9.\n\nStep two. Add and subtract 9 inside the expression. You get x squared minus 6x plus 9, minus 9, plus 5. Adding and subtracting the same number changes nothing.\n\nStep three. The first three terms — x squared minus 6x plus 9 — form a perfect square trinomial. It factors as x minus 3, squared.\n\nStep four. Simplify the leftover constants: negative 9 plus 5 is negative 4.\n\nFinal result: x minus 3, squared, minus 4. Vertex form, vertex at 3 comma negative 4.\n\nThe pattern is always the same: take half of b, square it, add and subtract, factor, simplify. Practice this until you can do it in under two minutes.\n\nOne complication: if a is not equal to 1, factor it out of the first two terms before completing the square. Example: 2x squared minus 8x plus 3. Factor 2 from the first two terms: 2 times the quantity x squared minus 4x, plus 3. Complete the square on x squared minus 4x. Half of negative 4 is negative 2, squared is 4. Add and subtract inside the parentheses: 2 times the quantity x minus 2 squared minus 4, plus 3. Distribute the 2 to the negative 4: 2 times x minus 2 squared, minus 8 plus 3, which is 2 times x minus 2 squared, minus 5. Vertex at 2 comma negative 5.\n\nSame steps, just with the factor-out first. Get comfortable with both the a-equals-one version and the a-not-one version."
     },
     {
+      "id": "live-01",
+      "type": "live",
+      "mode": "instructor-initiated",
+      "trigger": {
+        "at": 420
+      },
+      "timeout": 60,
+      "prompt": "Quick one — y-intercept of f(x) = x² + 4x − 5? And if a is negative, does the parabola open up or down?",
+      "slide": {
+        "index": 2,
+        "highlights": []
+      }
+    },
+    {
       "id": "seg-03",
       "type": "stream",
       "startTime": 780,
@@ -271,14 +285,14 @@
       "script": "Vertex form: f of x equals a times x minus h, squared, plus k. The vertex is h comma k. That's it — you read it straight from the equation.\n\nOne catch. Look at the form: x minus h. The h is subtracted. So the sign you see is the opposite of h.\n\nIf you see x minus 4, then h equals positive 4.\nIf you see x plus 3 — which is the same as x minus negative 3 — then h equals negative 3.\n\nThe sign flips. This is the most common mistake with vertex form, and the SAT uses it on purpose. k has no trick: whatever's at the end, that's your vertex y-value.\n\nA few quick examples to lock this in.\n\nf of x equals 3 times x minus 4 squared plus 7. Vertex: 4 comma 7. a is positive 3, opens up, minimum. Minimum value: 7. Axis: x equals 4.\n\nf of x equals negative 2 times x plus 5 squared minus 1. x plus 5 means h is negative 5. k is negative 1. Vertex: negative 5 comma negative 1. a negative, opens down, maximum. Maximum value: negative 1. Axis: x equals negative 5.\n\nf of x equals x minus 1 squared. No written coefficient, so a is 1. No constant at the end, so k is 0. Vertex: 1 comma 0. Vertex sits right on the x-axis, which means there's exactly one root, at x equals 1.\n\nThe axis of symmetry in vertex form is just x equals h. Same x-coordinate as the vertex.\n\nConverting from vertex form back to standard form: expand the binomial, multiply through by a, collect terms. Mechanical.\n\nGoing the other direction — standard to vertex — requires completing the square, which you just learned.\n\nOn the SAT, vertex form problems almost always ask you to read information off the equation. Given the form, identify the vertex, axis, or min/max. The speed is the point. Once you've practiced enough that the sign-flip on h is reflex, these questions take under thirty seconds."
     },
     {
-      "id": "live-01",
+      "id": "live-02",
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
         "at": 780
       },
-      "timeout": 120,
-      "prompt": "Quick drill before we move on — what's the axis of symmetry of f(x) = x² − 8x + 3? Use the formula, not a calculator. Go.",
+      "timeout": 60,
+      "prompt": "Speed check — vertex of f(x) = (x + 1)² − 4? Open up or down? What's the min or max value?",
       "slide": {
         "index": 3,
         "highlights": []
@@ -295,6 +309,20 @@
         "highlights": []
       },
       "script": "Let's map out the key parts of a parabola, because the SAT references all of them.\n\nThe vertex. The turning point — bottom if the parabola opens up, top if it opens down. Its y-coordinate is the minimum or maximum value of the function.\n\nThe axis of symmetry. A vertical line through the vertex, x equals h. The parabola is a perfect mirror on both sides. If there's a point on the parabola that's 3 units to the right of the axis, there's a matching point 3 units to the left at the same height. The SAT sometimes uses this mirror property to set up problems where you need to find an unknown x-coordinate from a known one.\n\nThe roots. Also called zeros or x-intercepts — where f of x equals zero, where the parabola crosses the x-axis. Two roots, one root, or none. The roots are always symmetric about the axis of symmetry, so if you know one root and the axis, you can find the other without solving the equation.\n\nThe y-intercept. Where the parabola crosses the y-axis. In standard form it's c. In vertex form plug in x equals zero.\n\nQuick visual logic check for any quadratic: sign of a gives direction. Vertex position relative to the x-axis tells you root count — vertex below x-axis and opening up means two roots, vertex on the axis means one, vertex above and opening up means none. Flip the logic for opening down. This kind of spatial reasoning is faster than formula-checking when you're looking at a graph and picking among answer choices."
+    },
+    {
+      "id": "live-03",
+      "type": "live",
+      "mode": "instructor-initiated",
+      "trigger": {
+        "at": 1200
+      },
+      "timeout": 60,
+      "prompt": "Axis of symmetry of f(x) = −2(x − 3)² + 1? And is that a min or max — what's the value?",
+      "slide": {
+        "index": 4,
+        "highlights": []
+      }
     },
     {
       "id": "seg-05",
@@ -321,16 +349,16 @@
       "script": "The discriminant — b squared minus 4ac. This is the expression under the square root in the quadratic formula. It tells you exactly how many real solutions an equation has, without making you solve anything.\n\nThree cases.\n\nPositive discriminant: the square root is a real positive number. Plus and minus give two different results. Two distinct real roots. The parabola crosses the x-axis twice.\n\nZero discriminant: the square root is zero. Plus zero and minus zero give the same result. One real root — a repeated root. The vertex sits exactly on the x-axis.\n\nNegative discriminant: you'd need the square root of a negative number, which isn't real. No real roots. The parabola doesn't touch the x-axis.\n\nYou don't have to solve the equation to know this. Just calculate b squared minus 4ac and check the sign. That's the shortcut.\n\nThe SAT uses the discriminant in two ways.\n\nFirst: how many real solutions does this equation have? Compute b squared minus 4ac, check the sign, answer.\n\nSecond: given a condition on the number of solutions, find the value of a constant. Set the discriminant equal to zero for exactly one solution, greater than zero for two solutions, or less than zero for no real solutions, then solve for the unknown.\n\nPractice problem. The equation 2x squared plus kx plus 8 equals 0 has no real solutions. What values of k are possible?\n\nNo real solutions means b squared minus 4ac is less than zero. Here b is k, a is 2, c is 8. k squared minus 4 times 2 times 8 is less than zero. k squared minus 64 is less than zero. k squared is less than 64. So k is between negative 8 and positive 8, not including the endpoints.\n\nThat's a clean discriminant problem. Same setup every time: translate the solution condition into a discriminant inequality or equation, solve."
     },
     {
-      "id": "live-02",
+      "id": "live-04",
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 1440
+        "at": 1560
       },
-      "timeout": 180,
-      "prompt": "Speed round — give me the vertex of f(x) = −3(x + 2)² + 5. And does it open up or down? Any part of vertex form still fuzzy?",
+      "timeout": 90,
+      "prompt": "Discriminant drill — how many real roots does x² − 4x + 4 = 0 have? Calculate b² − 4ac and tell me the sign.",
       "slide": {
-        "index": 5,
+        "index": 6,
         "highlights": []
       }
     },
@@ -359,6 +387,20 @@
       "script": "Solution to question one. f of x equals 2 times x plus 3, squared, minus 8.\n\nThe equation is in vertex form. Read the vertex. x plus 3 means h is negative 3. The constant at the end is negative 8, so k is negative 8. Vertex: negative 3 comma negative 8.\n\nMinimum or maximum? a is 2. Positive. Opens up. Vertex is the minimum.\n\nMinimum value of f: negative 8. Done.\n\nNo algebra. No expanding. You read the vertex from the form, checked the sign of a, and wrote down k. Under thirty seconds.\n\nCompare to the standard form approach: expand to get 2x squared plus 12x plus 10, apply the axis formula to get x equals negative 3, plug back in to get 2 of 9 minus 36 plus 10 equals negative 8. Same answer, four times the work. Vertex form is faster. Use it whenever you see it.\n\nNow question two. The function g is defined by g of x equals x squared minus 6x plus 5. What is the equation of the axis of symmetry of the graph of g in the xy-plane?\n\nStandard form this time. Two valid approaches: the axis formula, or completing the square. Think about which one you'd use and try it."
     },
     {
+      "id": "live-05",
+      "type": "live",
+      "mode": "instructor-initiated",
+      "trigger": {
+        "at": 1860
+      },
+      "timeout": 210,
+      "prompt": "Q1 is in front of you — f(x) = 2(x + 3)² − 8, minimum value. Work through it and tell me your answer.",
+      "slide": {
+        "index": 7,
+        "highlights": []
+      }
+    },
+    {
       "id": "seg-09",
       "type": "stream",
       "startTime": 2100,
@@ -369,20 +411,6 @@
         "highlights": []
       },
       "script": "Solution to question two. g of x equals x squared minus 6x plus 5.\n\nMethod one, the formula. Axis of symmetry: x equals negative b over 2a. a is 1, b is negative 6. x equals negative of negative 6, over 2 times 1. That's 6 over 2, equals 3. Axis: x equals 3.\n\nMethod two, completing the square. Half of negative 6 is negative 3, squared is 9. Add and subtract 9: x squared minus 6x plus 9, minus 9, plus 5. Factor: x minus 3, squared. Simplify: minus 9 plus 5 is minus 4. Result: x minus 3 squared minus 4. Vertex at 3 comma negative 4. Axis: x equals 3.\n\nSame answer.\n\nThe formula is faster for the axis alone. Completing the square takes longer but gives you more — vertex and minimum too. For this question, the formula wins. But notice: when you complete the square you also get the vertex at 3 comma negative 4 and the minimum value of negative 4. If the SAT had asked either of those as a follow-up, you'd already be done.\n\nWhen you're completing the square anyway, write down everything the vertex form tells you. You'll often need it.\n\nNow question three — a word problem."
-    },
-    {
-      "id": "live-03",
-      "type": "live",
-      "mode": "instructor-initiated",
-      "trigger": {
-        "at": 2100
-      },
-      "timeout": 240,
-      "prompt": "Q1 is done. Q2 is g(x) = x² − 6x + 5 — axis of symmetry. Try it yourself right now before the solution. Which method are you using?",
-      "slide": {
-        "index": 9,
-        "highlights": []
-      }
     },
     {
       "id": "seg-10",
@@ -397,6 +425,20 @@
       "script": "Question three. The function h of t equals negative 16t squared plus 80t plus 6 gives the height, in feet, of a ball at time t seconds after it's thrown upward. What is the maximum height of the ball?\n\nStandard form. a is negative 16 — negative, so it opens down. This makes sense for a projectile. The vertex gives the maximum height. That's the goal.\n\nAxis formula for the time at max height. t equals negative b over 2a. b is 80, a is negative 16. t equals negative 80 over 2 times negative 16, which is negative 80 over negative 32, equals 2.5 seconds.\n\nNow plug t equals 2.5 into h. h of 2.5 equals negative 16 times 6.25 plus 80 times 2.5 plus 6. Negative 100 plus 200 plus 6 equals 106.\n\nMaximum height: 106 feet.\n\nTwo things to watch for on word problems like this. First, the question asks for maximum height — a value in feet, not a time. You need h, not t. Plugging into the axis formula gives you t. You still need to evaluate h at that t. Students often stop too early and submit the t value. Don't.\n\nSecond, the phrase \"models the height\" is a signal. Quadratic models in physics or real-world contexts almost always come with a vertex question — maximum height, minimum cost, optimal time. When you see a quadratic word problem, look for a vertex question immediately."
     },
     {
+      "id": "live-06",
+      "type": "live",
+      "mode": "instructor-initiated",
+      "trigger": {
+        "at": 2310
+      },
+      "timeout": 210,
+      "prompt": "You just heard Q3 — h(t) = −16t² + 80t + 6, max height. Solve it before the solution plays. What's your approach?",
+      "slide": {
+        "index": 11,
+        "highlights": []
+      }
+    },
+    {
       "id": "seg-11",
       "type": "stream",
       "startTime": 2520,
@@ -409,16 +451,16 @@
       "script": "Let's take a step back. Here's what you've covered today.\n\nStandard form: f of x equals ax squared plus bx plus c. Sign of a gives direction and tells you min versus max. Axis of symmetry is x equals negative b over 2a. y-intercept is c. Completing the square converts it to vertex form.\n\nVertex form: f of x equals a times x minus h squared plus k. Vertex is h comma k, read directly. Sign of h is flipped — watch that. Axis is x equals h.\n\nThe discriminant: b squared minus 4ac. Positive means two real roots, zero means one, negative means none. Use it to answer root-count questions and to set up constant-finding problems.\n\nThree SAT problem types you can now handle quickly. Minimum or maximum from vertex form — read k, check sign of a, done. Axis of symmetry from standard form — use negative b over 2a. Word problem with quadratic model — identify the vertex question, apply axis formula, evaluate.\n\nIf any of this felt shaky, the completing the square steps and the vertex form sign rules are the highest-leverage things to practice. Those two things unlock most of the harder quadratic questions on the SAT.\n\nAny questions before we wrap up? The next section is open — ask anything."
     },
     {
-      "id": "live-04",
+      "id": "live-07",
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
         "at": 2700
       },
-      "timeout": 360,
-      "prompt": "That's quadratics. One thing that clicked today, one thing still fuzzy — what are yours? I'll stay for questions.",
+      "timeout": 90,
+      "prompt": "That's quadratics. One concept that clicked, one that still feels shaky — what are yours?",
       "slide": {
-        "index": 11,
+        "index": 12,
         "highlights": []
       }
     }
