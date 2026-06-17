@@ -1,0 +1,7 @@
+One concept that runs through everything: the vertex is either the minimum or maximum of the function. If a is positive, the parabola opens up and the vertex is the lowest point — the minimum. If a is negative, it opens down and the vertex is the highest point — the maximum. When the SAT asks for the minimum value or maximum value of a quadratic, they always mean the y-coordinate of the vertex. Always.
+
+The axis of symmetry is the vertical line through the vertex that splits the parabola into two perfect mirror halves. In standard form it's x equals negative b over 2a. In vertex form it's x equals h. Both expressions describe the same line — they're different ways of writing the same equation.
+
+The roots — also called zeros or x-intercepts — are where the parabola hits the x-axis, where f of x equals zero. A parabola can cross the x-axis twice, once, or not at all. The discriminant tells you which case you're dealing with, and we'll get to that in its own section.
+
+That's the big picture. Next up: standard form in detail.

@@ -1,0 +1,7 @@
+A quadratic function looks like this: f of x equals ax squared plus bx plus c, where a is not zero. The graph is always a parabola — that symmetrical U-shape that either opens up or opens down. The direction depends entirely on the sign of a. That's your starting point.
+
+The SAT gives you quadratics in two forms. Standard form: f of x equals ax squared plus bx plus c. Vertex form: f of x equals a times the quantity x minus h, squared, plus k. Same function, different packaging — and each one makes different information easy to spot.
+
+Standard form puts the y-intercept right in front of you. It's just c — plug in x equals zero and everything else drops out. Vertex form puts the vertex right in front of you. The vertex is the point h comma k. No calculation needed.
+
+Why does this matter? Because the SAT loves giving you one form and asking about something that's easier to read from the other. Recognizing which form you're looking at, and knowing what each one reveals, is half the battle.

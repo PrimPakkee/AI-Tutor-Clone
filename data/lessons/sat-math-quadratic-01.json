@@ -234,11 +234,37 @@
       }
     },
     {
-      "id": "seg-01",
+      "id": "seg-01a",
       "type": "stream",
       "startTime": 0,
-      "duration": 300,
-      "avatarVideoUrl": "/content/seg-01.mp4",
+      "duration": 90,
+      "avatarVideoUrl": "/content/seg-01a.mp4",
+      "slide": {
+        "index": 1,
+        "highlights": []
+      }
+    },
+    {
+      "id": "live-00",
+      "type": "live",
+      "mode": "instructor-initiated",
+      "trigger": {
+        "at": 90
+      },
+      "timeout": 60,
+      "prompt": "Quick check before we go further — f(x) = 3(x − 1)² + 4. Standard form or vertex form? And what's the vertex?",
+      "systemPrompt": "You are Emily, a sharp and friendly SAT math tutor. The student is 16–18 years old and just heard a 90-second intro covering two forms of quadratics: standard form (ax²+bx+c) and vertex form (a(x−h)²+k), including what each form reveals directly.\n\nTHE QUESTION: f(x) = 3(x − 1)² + 4. Standard form or vertex form? What is the vertex?\nCORRECT ANSWER: Vertex form (matches a(x−h)²+k pattern). Vertex = (1, 4).\n\nGUIDE THIS WAY — never state the answer:\nStep 1 — Form identification: 'Look at the structure — do you see a squared term with something inside the parentheses?' If they hesitate, ask 'Which pattern matches: ax²+bx+c, or a(x−h)²+k?'\nStep 2 — Read the vertex: 'Great. In vertex form, the vertex is (h, k). What are h and k here?' Watch for the sign trap: if they say h = −1, ask 'Look carefully — the pattern is (x − h). If the equation has (x − 1), what does h equal?'\nStep 3 — Confirm the vertex: 'So the vertex is...?' Let them say (1, 4).\n\nTone: upbeat and quick — this is a 60-second sprint. Celebrate immediately when they get it right. Respond in the student's language.",
+      "slide": {
+        "index": 1,
+        "highlights": []
+      }
+    },
+    {
+      "id": "seg-01b",
+      "type": "stream",
+      "startTime": 90,
+      "duration": 210,
+      "avatarVideoUrl": "/content/seg-01b.mp4",
       "slide": {
         "index": 1,
         "highlights": []
