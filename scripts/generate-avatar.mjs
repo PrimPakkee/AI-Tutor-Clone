@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generates avatar .mp4 files for each stream segment in a lesson JSON.
+ * Generates avatar .webm files for each stream segment in a lesson JSON.
  * Usage: node scripts/generate-avatar.mjs --lesson data/lessons/lesson.json --output public/content/
  *
  * STUB: Replace the generateVideoForSegment function body with the real ZEGO Avatar API call

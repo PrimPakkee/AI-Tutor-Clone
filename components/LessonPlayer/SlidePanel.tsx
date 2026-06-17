@@ -64,7 +64,7 @@ function SlideHeader({ type, title, index, total }: { type: SlideType; title: st
     <div className={`bg-gradient-to-r ${grad} px-5 py-3.5 flex items-center justify-between shrink-0`}>
       <div className="flex items-center gap-2.5 min-w-0">
         <span className="text-white/60 text-[9px] font-extrabold tracking-widest uppercase shrink-0">{badge}</span>
-        <h2 className="text-sm font-bold text-white truncate">{title}</h2>
+        <h2 className="text-[15px] font-bold text-white truncate">{title}</h2>
       </div>
       <div className="flex items-center gap-2 shrink-0 ml-3">
         <span className="text-white/50 text-xs">{index} / {total}</span>
@@ -100,7 +100,7 @@ function BulletList({ bullets, satTipIdx }: { bullets: string[]; satTipIdx: numb
             <span className={`text-lg leading-none shrink-0 mt-0.5 ${isSAT ? 'text-amber-500' : 'text-indigo-400'}`}>
               {isSAT ? '★' : '◆'}
             </span>
-            <span className={`text-sm leading-snug ${isSAT ? 'text-amber-800 font-semibold' : 'text-slate-700'}`}>{b}</span>
+            <span className={`text-[15px] leading-snug ${isSAT ? 'text-amber-800 font-semibold' : 'text-slate-700'}`}>{b}</span>
           </div>
         )
       })}
@@ -565,10 +565,10 @@ function CoverSlide({ slide, slideCount }: { slide: Slide; slideCount: number })
         {/* Title block */}
         <div className="flex flex-col gap-1">
           <p className="text-indigo-300/80 text-xs font-semibold tracking-wide">Unit 3</p>
-          <h1 className="text-white font-black leading-tight" style={{ fontSize: '1.45rem' }}>
+          <h1 className="text-white font-black leading-tight" style={{ fontSize: '2.1rem' }}>
             Quadratic<br />Functions
           </h1>
-          <h2 className="text-indigo-200/70 font-medium text-sm leading-snug">
+          <h2 className="text-indigo-200/70 font-medium text-base leading-snug">
             Parabolas, Vertex Form &amp; the Discriminant
           </h2>
         </div>
@@ -583,7 +583,7 @@ function CoverSlide({ slide, slideCount }: { slide: Slide; slideCount: number })
               <span className="mt-0.5 w-4 h-4 rounded-full bg-indigo-500/40 border border-indigo-400/40 flex items-center justify-center text-[9px] font-bold text-indigo-200 shrink-0">
                 {i + 1}
               </span>
-              <span className="text-indigo-100/75 text-[11px] leading-snug">{b}</span>
+              <span className="text-indigo-100/75 text-xs leading-snug">{b}</span>
             </div>
           ))}
         </div>

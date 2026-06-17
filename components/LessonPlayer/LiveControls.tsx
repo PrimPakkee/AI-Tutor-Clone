@@ -11,7 +11,7 @@ type Props = {
 }
 
 export function LiveControls({ playerState, timeout, prompt, onEnd, onSendText }: Props) {
-  const [startedAt] = useState(() => Date.now())
+  const startedAtRef = useRef(Date.now())
   const [elapsed, setElapsed] = useState(0)
   const [isRecording, setIsRecording] = useState(false)
   const [transcript, setTranscript] = useState('')
@@ -28,13 +28,15 @@ export function LiveControls({ playerState, timeout, prompt, onEnd, onSendText }
   // Countdown timer + auto-end on timeout
   useEffect(() => {
     if (!isLive) return
+    startedAtRef.current = Date.now()
+    setElapsed(0)
     const interval = setInterval(() => {
-      const secs = Math.floor((Date.now() - startedAt) / 1000)
+      const secs = Math.floor((Date.now() - startedAtRef.current) / 1000)
       setElapsed(secs)
       if (timeout && secs >= timeout) onEnd(secs)
     }, 1000)
     return () => clearInterval(interval)
-  }, [isLive, timeout, startedAt, onEnd])
+  }, [isLive, timeout, onEnd])
 
   const startRecording = useCallback(() => {
     if (recognitionRef.current) return  // already running

@@ -66,13 +66,30 @@ export function useLiveSession({
         clientRef.current = client
 
         // Register BEFORE join — required by SDK
+        client.on('user-joined', (user) => {
+          console.log('[user-joined] uid:', (user as {uid:unknown}).uid)
+        })
+        client.on('user-left', (user, reason) => {
+          console.log('[user-left] uid:', (user as {uid:unknown}).uid, 'reason:', reason)
+        })
         client.on('user-published', async (user, mediaType) => {
           console.log('[user-published] uid:', (user as {uid:unknown}).uid, 'mediaType:', mediaType)
           const track = await client.subscribe(user, mediaType as 'video' | 'audio')
           if (mediaType === 'video') {
-            track.play(avatarVideoElId)
+            const el = document.getElementById(avatarVideoElId)
+            console.log('[user-published] video el:', el, 'id:', avatarVideoElId)
+            ;(track as import('omnirtc-web').IRemoteVideoTrack).on('first-frame-decoded', () => {
+              console.log('[user-published] first-frame-decoded ✓')
+            })
+            try {
+              ;(track as import('omnirtc-web').IRemoteVideoTrack).play(el ?? avatarVideoElId, { fit: 'cover' })
+              console.log('[user-published] track.play() called, isPlaying:', (track as {isPlaying?:boolean}).isPlaying)
+            } catch (e) {
+              console.error('[user-published] track.play() failed:', e)
+            }
           } else {
             (track as import('omnirtc-web').IRemoteAudioTrack).play()
+            console.log('[user-published] audio track playing')
           }
         })
 
@@ -117,18 +134,26 @@ export function useLiveSession({
           const robotId = Math.random().toString().substring(2, 10)
           // prompt = LLM system instruction (role definition, NOT the question)
           // welcome = the opening question the avatar says aloud
-          const systemPrompt = avatarChatCfg?.prompt ||
+          const systemPrompt =
             activeLiveSeg.systemPrompt ||
             `You are Emily, an AI SAT math tutor. Answer the student's questions about: "${activeLiveSeg.prompt}". Be concise and encouraging. Respond in the student's language.`
           const startPayload = {
             prompt: systemPrompt,
             welcome: activeLiveSeg.prompt,
-            ...(avatarChatCfg?.avatarConfig !== undefined && { avatarConfig: avatarChatCfg.avatarConfig }),
+            avatarConfig: 78,  // 腾讯-伴学营-外国女
+            ttsConfig: 42,
             llmConfig: 15,  // deepseek-v3 (id:15) instead of doubao (id:60)
           }
           console.log('[useLiveSession] aigc.start payload:', JSON.stringify(startPayload))
           const startResult = await aigc.start('avatarchat', startPayload, robotId)
-          console.log('[useLiveSession] aigc.start result:', JSON.stringify(startResult))
+          const startCode = (startResult as {code?:unknown})?.code
+          if (startCode !== 0 && startCode !== undefined) {
+            console.error('[useLiveSession] aigc.start FAILED, code:', startCode, 'result:', JSON.stringify(startResult))
+          } else {
+            console.log('[useLiveSession] aigc.start OK:', JSON.stringify(startResult))
+          }
+          // Log any remote users already in the channel
+          console.log('[useLiveSession] remoteUsers after start:', (client as {remoteUsers?: unknown[]}).remoteUsers)
         }
       } catch (err) {
         if (!aborted) {
@@ -137,8 +162,6 @@ export function useLiveSession({
         }
       }
     }
-
-    startSession()
 
     return () => {
       aborted = true

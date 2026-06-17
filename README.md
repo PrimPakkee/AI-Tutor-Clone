@@ -73,6 +73,7 @@ components/LessonPlayer/
 lib/
   use-timeline.ts           时间轴状态机（STREAMING / LIVE_INSTRUCTOR / LIVE_STUDENT）
   use-live-session.ts       OmniRTC 生命周期：加入、发布、AIGC、清理
+  use-tts-session.ts        /slides 页专用 TTS 会话（AIGC voicechat，不发布本地流）
   quota.ts                  直播互动时长配额追踪
   types.ts                  共享 TypeScript 类型定义
 
@@ -81,7 +82,7 @@ data/lessons/
 
 public/content/
   seg-xx[a|b].txt           录播脚本（每个录播片段一份，共 17 个）
-  seg-xx[a|b].mp4           数字人视频（通过下方流程生成）
+  seg-xx[a|b].webm           数字人视频（通过下方流程生成）
   timeline.md               完整课程时间轴及互动设计说明
 
 scripts/
@@ -106,7 +107,7 @@ scripts/
       "type": "stream",
       "startTime": 0,           // 相对课程起点的秒数
       "duration": 300,
-      "avatarVideoUrl": "/content/seg-01.mp4",
+      "avatarVideoUrl": "/content/seg-01.webm",
       "slide": { "index": 1, "highlights": [] },
       "script": "..."           // 旁白文字稿
     },
@@ -125,32 +126,33 @@ scripts/
 
 ### 当前演示课互动计划
 
-8 个直播节点，间隔 5–7 分钟，合计 14 分钟配额（上限 15 min）：
+8 个直播节点，触发时间与实际 .webm 视频时长对齐（所有触发点在录播段边界处）：
 
 | 触发时间 | 节点 | 类型 | 内容 | 配额 |
 |----------|------|------|------|------|
-| 1:30 | live-00 | ⚡ 概念 | 识别顶点式，读出顶点坐标 | 60s |
-| 7:00 | live-01 | ⚡ 概念 | y 截距 + a 的方向判断 | 60s |
-| 13:00 | live-02 | ⚡ 概念 | 顶点式速读：顶点 + 开口方向 | 60s |
-| 20:00 | live-03 | ⚡ 概念 | 对称轴 + 最值 | 60s |
-| 26:00 | live-04 | ⚡ 概念 | 判别式计算 + 根的个数 | 90s |
-| 31:00 | live-05 | 📝 题目 | Q1 独立解题：2(x+3)²−8 最小值 | 210s |
-| 38:30 | live-06 | 📝 题目 | Q3 独立解题：抛物线模型最大高度 | 210s |
-| 45:00 | live-07 | ⚡ 反思 | 收尾反思：一个收获，一个疑问 | 90s |
+| 1:27 (87s) | live-00 | ⚡ 概念 | 识别顶点式，读出顶点坐标 | 60s |
+| 4:05 (245s) | live-01 | ⚡ 概念 | y 截距 + a 的方向判断 | 60s |
+| 10:05 (605s) | live-02 | ⚡ 概念 | 顶点式速读：顶点 + 开口方向 | 60s |
+| 17:05 (1025s) | live-03 | ⚡ 概念 | 对称轴 + 最值 | 60s |
+| 23:05 (1385s) | live-04 | ⚡ 概念 | 判别式计算 + 根的个数 | 90s |
+| 28:05 (1685s) | live-05 | 📝 题目 | Q1 独立解题：2(x+3)²−8 最小值 | 210s |
+| 35:35 (2135s) | live-06 | 📝 题目 | Q3 独立解题：抛物线模型最大高度 | 210s |
+| 42:05 (2525s) | live-07 | ⚡ 反思 | 收尾反思：一个收获，一个疑问 | 90s |
 
 ---
 
 ## 内容制作流程
 
 ```
-文字脚本(.txt) → TTS 音频(.mp3) → 数字人工作台 → 视频(.mp4) → public/content/
+文字脚本(.txt) → TTS 音频(.mp3) → 数字人工作台 → 视频(.webm) → public/content/
 ```
 
 1. **文字脚本** — `public/content/seg-xx[a|b].txt`（英文，SAT 数学，面向 16–18 岁用户）共 **17 个**
 2. **TTS 生成音频** — 将每个 `.txt` 转为同名 `.mp3`
-3. **数字人视频** — 将音频上传至数字人供应商工作台，下载对应 `.mp4`
-4. **放置文件** — 将 `.mp4` 放入 `public/content/`，文件名与 JSON 中 `avatarVideoUrl` 保持一致
-5. **验证** — `npm run dev` → 打开 `/lesson/sat-math-quadratic-01`，点击 **DEV: Jump to Live** 测试直播流程
+3. **数字人视频** — 将音频上传至数字人供应商工作台，下载对应 `.webm`
+4. **放置文件** — 将 `.webm` 放入 `public/content/`，文件名与 JSON 中 `avatarVideoUrl` 保持一致
+5. **更新时间轴** — 用实际视频时长更新 JSON 中各段的 `duration`，确保直播触发点对齐段边界（floor 取整避免 `onEnded` elapsed 不足）
+6. **验证** — `npm run dev` → 打开 `/lesson/sat-math-quadratic-01`，点击 **DEV: Jump to Live** 测试直播流程
 
 详见 `public/content/timeline.md`，包含字数统计、预估时长和完整片段时间表。
 
@@ -162,13 +164,18 @@ scripts/
 
 直播使用 OmniRTC Web SDK，结合 AIGC `avatarchat` 服务。
 
+**数字人配置：**
+- `avatarConfig: 78` — 腾讯·伴学营·外国女
+- `ttsConfig: 42` — TTS 音色
+- `llmConfig: 15` — DeepSeek-V3
+
 **会话流程：**
 1. 播放器在触发点进入 `LIVE_INSTRUCTOR` 状态
 2. `use-live-session.ts` 从 `/api/rtc/token` 获取 token
 3. 学生通过 OmniRTC 发布麦克风和摄像头
-4. AIGC 服务将实时 AI 头像视频流推送给学生
-5. 头像朗读片段配置的 `prompt`，学生语音作答
-6. 学生点击"结束回答"或达到 `timeout` 后会话结束
+4. AIGC 服务将实时 AI 头像视频流推送给学生（`user-published` 事件）
+5. 头像朗读片段配置的 `prompt`（欢迎语），学生语音作答
+6. 学生点击"说完了"发送语音，或达到 `timeout` 自动结束会话
 
 **Token 说明：** 当前使用单一预签发 `OMNIRTC_TOKEN`。生产环境请将 `app/api/rtc/token/route.ts` 替换为逐会话服务端签发逻辑。
 

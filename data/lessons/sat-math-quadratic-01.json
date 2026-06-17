@@ -225,9 +225,9 @@
     {
       "id": "seg-cover",
       "type": "stream",
-      "startTime": -30,
-      "duration": 30,
-      "avatarVideoUrl": "/content/seg-cover.mp4",
+      "startTime": -33,
+      "duration": 33,
+      "avatarVideoUrl": "/content/seg-cover.webm",
       "slide": {
         "index": 0,
         "highlights": []
@@ -237,8 +237,8 @@
       "id": "seg-01a",
       "type": "stream",
       "startTime": 0,
-      "duration": 90,
-      "avatarVideoUrl": "/content/seg-01a.mp4",
+      "duration": 87,
+      "avatarVideoUrl": "/content/seg-01a.webm",
       "slide": {
         "index": 1,
         "highlights": []
@@ -249,7 +249,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 90
+        "at": 87
       },
       "timeout": 60,
       "prompt": "Quick check before we go further — f(x) = 3(x − 1)² + 4. Standard form or vertex form? And what's the vertex?",
@@ -262,9 +262,9 @@
     {
       "id": "seg-01b",
       "type": "stream",
-      "startTime": 90,
-      "duration": 210,
-      "avatarVideoUrl": "/content/seg-01b.mp4",
+      "startTime": 87,
+      "duration": 84,
+      "avatarVideoUrl": "/content/seg-01b.webm",
       "slide": {
         "index": 1,
         "highlights": []
@@ -273,9 +273,9 @@
     {
       "id": "seg-02a",
       "type": "stream",
-      "startTime": 300,
-      "duration": 120,
-      "avatarVideoUrl": "/content/seg-02a.mp4",
+      "startTime": 171,
+      "duration": 74,
+      "avatarVideoUrl": "/content/seg-02a.webm",
       "slide": {
         "index": 2,
         "highlights": []
@@ -286,7 +286,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 420
+        "at": 245
       },
       "timeout": 60,
       "prompt": "Quick check before we move on — what's the y-intercept of f(x) = x² + 4x − 5? And if the leading coefficient is negative, which way does the parabola open?",
@@ -299,9 +299,9 @@
     {
       "id": "seg-02b",
       "type": "stream",
-      "startTime": 420,
+      "startTime": 245,
       "duration": 360,
-      "avatarVideoUrl": "/content/seg-02b.mp4",
+      "avatarVideoUrl": "/content/seg-02b.webm",
       "slide": {
         "index": 2,
         "highlights": []
@@ -310,9 +310,9 @@
     {
       "id": "seg-03",
       "type": "stream",
-      "startTime": 780,
+      "startTime": 605,
       "duration": 300,
-      "avatarVideoUrl": "/content/seg-03.mp4",
+      "avatarVideoUrl": "/content/seg-03.webm",
       "slide": {
         "index": 3,
         "highlights": []
@@ -323,7 +323,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 780
+        "at": 605
       },
       "timeout": 60,
       "prompt": "Speed round — give me the vertex of f(x) = (x + 1)² − 4. Open up or down, and what's the min or max value?",
@@ -336,9 +336,9 @@
     {
       "id": "seg-04a",
       "type": "stream",
-      "startTime": 1080,
+      "startTime": 905,
       "duration": 120,
-      "avatarVideoUrl": "/content/seg-04a.mp4",
+      "avatarVideoUrl": "/content/seg-04a.webm",
       "slide": {
         "index": 4,
         "highlights": []
@@ -349,7 +349,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 1200
+        "at": 1025
       },
       "timeout": 60,
       "prompt": "From vertex form — what's the axis of symmetry of f(x) = −2(x − 3)² + 1? And does that function have a minimum or a maximum? What's the value?",
@@ -362,9 +362,9 @@
     {
       "id": "seg-04b",
       "type": "stream",
-      "startTime": 1200,
+      "startTime": 1025,
       "duration": 60,
-      "avatarVideoUrl": "/content/seg-04b.mp4",
+      "avatarVideoUrl": "/content/seg-04b.webm",
       "slide": {
         "index": 4,
         "highlights": []
@@ -373,9 +373,9 @@
     {
       "id": "seg-05",
       "type": "stream",
-      "startTime": 1260,
+      "startTime": 1085,
       "duration": 180,
-      "avatarVideoUrl": "/content/seg-05.mp4",
+      "avatarVideoUrl": "/content/seg-05.webm",
       "slide": {
         "index": 5,
         "highlights": []
@@ -384,9 +384,9 @@
     {
       "id": "seg-06a",
       "type": "stream",
-      "startTime": 1440,
+      "startTime": 1265,
       "duration": 120,
-      "avatarVideoUrl": "/content/seg-06a.mp4",
+      "avatarVideoUrl": "/content/seg-06a.webm",
       "slide": {
         "index": 6,
         "highlights": []
@@ -397,7 +397,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 1560
+        "at": 1385
       },
       "timeout": 90,
       "prompt": "Discriminant drill — calculate b² − 4ac for x² − 4x + 4 = 0 and tell me what the sign means for the number of roots.",
@@ -410,9 +410,9 @@
     {
       "id": "seg-06b",
       "type": "stream",
-      "startTime": 1560,
+      "startTime": 1385,
       "duration": 120,
-      "avatarVideoUrl": "/content/seg-06b.mp4",
+      "avatarVideoUrl": "/content/seg-06b.webm",
       "slide": {
         "index": 6,
         "highlights": []
@@ -421,9 +421,9 @@
     {
       "id": "seg-07",
       "type": "stream",
-      "startTime": 1680,
+      "startTime": 1505,
       "duration": 180,
-      "avatarVideoUrl": "/content/seg-07.mp4",
+      "avatarVideoUrl": "/content/seg-07.webm",
       "slide": {
         "index": 7,
         "highlights": []
@@ -432,9 +432,9 @@
     {
       "id": "seg-08",
       "type": "stream",
-      "startTime": 1860,
+      "startTime": 1685,
       "duration": 240,
-      "avatarVideoUrl": "/content/seg-08.mp4",
+      "avatarVideoUrl": "/content/seg-08.webm",
       "slide": {
         "index": 8,
         "highlights": []
@@ -445,7 +445,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 1860
+        "at": 1685
       },
       "timeout": 210,
       "prompt": "Q1 is on the table — f(x) = 2(x + 3)² − 8. What's the minimum value of f? Walk me through your thinking.",
@@ -458,9 +458,9 @@
     {
       "id": "seg-09",
       "type": "stream",
-      "startTime": 2100,
+      "startTime": 1925,
       "duration": 180,
-      "avatarVideoUrl": "/content/seg-09.mp4",
+      "avatarVideoUrl": "/content/seg-09.webm",
       "slide": {
         "index": 9,
         "highlights": []
@@ -469,9 +469,9 @@
     {
       "id": "seg-10a",
       "type": "stream",
-      "startTime": 2280,
+      "startTime": 2105,
       "duration": 30,
-      "avatarVideoUrl": "/content/seg-10a.mp4",
+      "avatarVideoUrl": "/content/seg-10a.webm",
       "slide": {
         "index": 10,
         "highlights": []
@@ -482,7 +482,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 2310
+        "at": 2135
       },
       "timeout": 210,
       "prompt": "You just heard Q3 — h(t) = −16t² + 80t + 6 gives the height of a ball in feet at time t seconds. What's the maximum height? Solve it before the solution plays.",
@@ -495,9 +495,9 @@
     {
       "id": "seg-10b",
       "type": "stream",
-      "startTime": 2310,
+      "startTime": 2135,
       "duration": 210,
-      "avatarVideoUrl": "/content/seg-10b.mp4",
+      "avatarVideoUrl": "/content/seg-10b.webm",
       "slide": {
         "index": 11,
         "highlights": []
@@ -506,9 +506,9 @@
     {
       "id": "seg-11",
       "type": "stream",
-      "startTime": 2520,
+      "startTime": 2345,
       "duration": 180,
-      "avatarVideoUrl": "/content/seg-11.mp4",
+      "avatarVideoUrl": "/content/seg-11.webm",
       "slide": {
         "index": 11,
         "highlights": []
@@ -519,7 +519,7 @@
       "type": "live",
       "mode": "instructor-initiated",
       "trigger": {
-        "at": 2700
+        "at": 2525
       },
       "timeout": 90,
       "prompt": "That's quadratics — all of it. Tell me one thing that clicked today and one thing that still feels a bit shaky.",

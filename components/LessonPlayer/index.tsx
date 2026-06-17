@@ -1,6 +1,6 @@
 'use client'
-import { useState } from 'react'
-import type { Lesson } from '@/lib/types'
+import { useState, useEffect, useRef } from 'react'
+import type { Lesson, Slide } from '@/lib/types'
 import { useTimeline } from '@/lib/use-timeline'
 import { useLiveSession } from '@/lib/use-live-session'
 import { TopBar } from './TopBar'
@@ -51,6 +51,21 @@ export function LessonPlayer({
   const currentSlide = lesson.slides.find((s) => s.index === currentSlideIndex)
   const currentSlideRef = currentSegment?.type === 'stream' ? currentSegment.slide : null
 
+  const [displayedSlide, setDisplayedSlide] = useState<Slide | undefined>(currentSlide)
+  const [exitingSlide, setExitingSlide] = useState<Slide | null>(null)
+  const [slideKey, setSlideKey] = useState(0)
+  const displayedSlideRef = useRef(displayedSlide)
+
+  useEffect(() => {
+    if (!currentSlide || currentSlide.index === displayedSlideRef.current?.index) return
+    setExitingSlide(displayedSlideRef.current ?? null)
+    displayedSlideRef.current = currentSlide
+    setDisplayedSlide(currentSlide)
+    setSlideKey(k => k + 1)
+    const t = setTimeout(() => setExitingSlide(null), 300)
+    return () => clearTimeout(t)
+  }, [currentSlide?.index]) // eslint-disable-line react-hooks/exhaustive-deps
+
   if (!currentSlide) return null
 
   return (
@@ -59,12 +74,19 @@ export function LessonPlayer({
 
       <div className="flex flex-1 min-h-0">
         {/* Left 70%: lecture notes */}
-        <div className="w-[70%] border-r border-gray-200 bg-white flex flex-col">
-          <SlidePanel
-            slide={currentSlide}
-            slideCount={lesson.slides.length}
-            highlights={currentSlideRef?.highlights ?? []}
-          />
+        <div className="w-[70%] border-r border-gray-200 bg-white relative overflow-hidden">
+          {exitingSlide && (
+            <div className="slide-card-exit absolute inset-0 bg-white z-10">
+              <SlidePanel slide={exitingSlide} slideCount={lesson.slides.length} highlights={[]} />
+            </div>
+          )}
+          <div key={slideKey} className="slide-card-enter absolute inset-0 bg-white">
+            <SlidePanel
+              slide={displayedSlide ?? currentSlide}
+              slideCount={lesson.slides.length}
+              highlights={currentSlideRef?.highlights ?? []}
+            />
+          </div>
         </div>
 
         {/* Right 30%: instructor + student */}
@@ -123,7 +145,7 @@ export function LessonPlayer({
       {process.env.NODE_ENV === 'development' && (
         <div className="fixed bottom-3 left-3 flex gap-2 z-50">
           <button
-            onClick={() => setElapsed(91)}
+            onClick={() => setElapsed(88)}
             className="bg-black/70 text-white text-xs px-3 py-1.5 rounded-full hover:bg-black"
           >
             DEV: Jump to Live

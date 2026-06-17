@@ -73,7 +73,11 @@ export function AvatarPanel({
 
       {/* OmniRTC live avatar stream — overlays static image while AIGC connects */}
       {isLive && liveVideoElId && (
-        <div id={liveVideoElId} className="absolute inset-0 w-full h-full" />
+        <div
+          id={liveVideoElId}
+          className="absolute inset-0 w-full h-full z-10"
+          style={{ background: 'transparent' }}
+        />
       )}
 
       {isLive && (

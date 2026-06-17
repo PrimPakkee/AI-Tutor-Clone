@@ -1,6 +1,7 @@
 'use client'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { SlidePanel } from '@/components/LessonPlayer/SlidePanel'
+import { useTtsSession } from '@/lib/use-tts-session'
 import lessonData from '@/data/lessons/sat-math-quadratic-01.json'
 import type { Lesson } from '@/lib/types'
 
@@ -23,7 +24,7 @@ export default function SlidesTestPage() {
   const [autoPlay, setAutoPlay] = useState(true)
   const [showScript, setShowScript] = useState(false)
   const [script, setScript] = useState<string | null>(null)
-  const synthRef = useRef<SpeechSynthesisUtterance | null>(null)
+  const { speak, stop, isReady } = useTtsSession()
 
   const slides = lesson.slides
   const slide = slides[index]
@@ -39,38 +40,23 @@ export default function SlidesTestPage() {
       .catch(() => setScript(null))
   }, [slide.index, segmentIdMap])
 
-  const speak = useCallback((text: string) => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return
-    window.speechSynthesis.cancel()
-    const utt = new SpeechSynthesisUtterance(text)
-    utt.rate = 0.92
-    utt.pitch = 1.05
-    utt.lang = 'en-US'
-    // prefer a clear English voice
-    const voices = window.speechSynthesis.getVoices()
-    const preferred = voices.find(v =>
-      /Samantha|Google US English|Karen|Moira|en[-_]US/i.test(v.name)
-    )
-    if (preferred) utt.voice = preferred
-    utt.onstart = () => setIsPlaying(true)
-    utt.onend = () => setIsPlaying(false)
-    utt.onerror = () => setIsPlaying(false)
-    synthRef.current = utt
-    window.speechSynthesis.speak(utt)
-  }, [])
+  const speakScript = useCallback((text: string) => {
+    speak(text)
+    setIsPlaying(true)
+  }, [speak])
 
   const stopSpeech = useCallback(() => {
-    if (typeof window !== 'undefined') window.speechSynthesis?.cancel()
+    stop()
     setIsPlaying(false)
-  }, [])
+  }, [stop])
 
-  // Auto-play narration once script is fetched
+  // Auto-play narration once script is fetched and TTS session is ready
   useEffect(() => {
-    if (!autoPlay || !script) { stopSpeech(); return }
-    const t = setTimeout(() => speak(script), 400)
+    if (!autoPlay || !script || !isReady) { stopSpeech(); return }
+    const t = setTimeout(() => speakScript(script), 400)
     return () => { clearTimeout(t); stopSpeech() }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [script, autoPlay])
+  }, [script, autoPlay, isReady])
 
   function goTo(i: number) {
     stopSpeech()
@@ -102,7 +88,7 @@ export default function SlidesTestPage() {
           {/* Play/Pause current */}
           {script && (
             <button
-              onClick={() => isPlaying ? stopSpeech() : speak(script)}
+              onClick={() => isPlaying ? stopSpeech() : speakScript(script)}
               className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
             >
               {isPlaying ? (

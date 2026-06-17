@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useRef, useEffect } from 'react'
+import { useReducer, useCallback } from 'react'
 import type { Lesson, Segment, StreamSegment, InstructorLiveSegment, PlayerState } from '@/lib/types'
 import { createQuota, consumeQuota, getRemainingSeconds, isQuotaExhausted } from '@/lib/quota'
 import type { Quota } from '@/lib/quota'
@@ -72,9 +72,10 @@ function reducer(state: State, action: Action): State {
 }
 
 export function useTimeline(lesson: Lesson | null) {
+  const coverSeg = lesson?.segments.find((s): s is StreamSegment => s.type === 'stream' && s.id === 'seg-cover')
   const initialState: State = {
     playerState: lesson ? 'STREAMING' : 'IDLE',
-    elapsed: 0,
+    elapsed: coverSeg ? coverSeg.startTime : 0,
     quota: createQuota(lesson?.maxLiveSeconds ?? 0),
     skippedLiveIds: new Set(),
     streamPausePoint: 0,
@@ -83,18 +84,14 @@ export function useTimeline(lesson: Lesson | null) {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const stateRef = useRef(state)
-  useEffect(() => { stateRef.current = state }, [state])
-
   const setElapsed = useCallback((elapsed: number) => {
     if (!lesson) return
     dispatch({ type: 'SET_ELAPSED', elapsed })
-    const s = stateRef.current
-    if (s.playerState === 'STREAMING' && !isQuotaExhausted(s.quota)) {
-      const liveSeg = getLiveTriggerAt(lesson.segments, elapsed, s.skippedLiveIds)
+    if (state.playerState === 'STREAMING' && !isQuotaExhausted(state.quota)) {
+      const liveSeg = getLiveTriggerAt(lesson.segments, elapsed, state.skippedLiveIds)
       if (liveSeg) dispatch({ type: 'TRIGGER_INSTRUCTOR_LIVE', segId: liveSeg.id })
     }
-  }, [lesson])
+  }, [lesson, state.playerState, state.quota, state.skippedLiveIds])
 
   const raiseHand = useCallback(() => dispatch({ type: 'RAISE_HAND' }), [])
   const endLive = useCallback(
@@ -115,7 +112,7 @@ export function useTimeline(lesson: Lesson | null) {
       : null
 
   const currentSlideIndex: number =
-    activeLiveSeg?.slide.index ?? currentSegment?.slide.index ?? 1
+    activeLiveSeg?.slide.index ?? currentSegment?.slide.index ?? 0
 
   return {
     playerState: state.playerState,
