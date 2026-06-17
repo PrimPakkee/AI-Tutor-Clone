@@ -123,7 +123,7 @@ export function LessonPlayer({
       {process.env.NODE_ENV === 'development' && (
         <div className="fixed bottom-3 left-3 flex gap-2 z-50">
           <button
-            onClick={() => setElapsed(1441)}
+            onClick={() => setElapsed(91)}
             className="bg-black/70 text-white text-xs px-3 py-1.5 rounded-full hover:bg-black"
           >
             DEV: Jump to Live
