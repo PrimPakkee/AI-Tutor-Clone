@@ -24,9 +24,28 @@ export type Slide = {
   content: SlideContent
 }
 
+export type Highlight = { text: string; at: number }
+
+export type SceneEvent = {
+  at: number
+  state: Record<string, unknown>
+}
+
+export type Annotation = {
+  at: number
+  text: string
+  x: number        // left % (0–100)
+  y: number        // top % (0–100)
+  color?: string   // default amber
+  size?: 'sm' | 'md' | 'lg'
+  rotate?: number  // degrees, default –2
+}
+
 export type SlideRef = {
   index: number
-  highlights?: string[]
+  highlights?: Highlight[]
+  scene?: SceneEvent[]
+  annotations?: Annotation[]
 }
 
 export type StreamSegment = {

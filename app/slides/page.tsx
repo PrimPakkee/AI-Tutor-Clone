@@ -126,7 +126,7 @@ export default function SlidesTestPage() {
 
       {/* Slide */}
       <div className="flex-1 flex items-center justify-center px-6 py-4">
-        <div className="w-full max-w-3xl">
+        <div className="w-full max-w-3xl relative" style={{ aspectRatio: '4/3' }}>
           <SlidePanel slide={slide} slideCount={slides.length} highlights={[]} />
         </div>
       </div>

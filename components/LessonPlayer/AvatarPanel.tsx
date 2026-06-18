@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import type { PlayerState } from '@/lib/types'
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
   liveVideoElId?: string
   speakerMuted?: boolean
   onVideoTimeUpdate?: (absoluteTime: number) => void
+  onVideoMount?: (el: HTMLVideoElement | null) => void
 }
 
 export function AvatarPanel({
@@ -22,6 +23,7 @@ export function AvatarPanel({
   liveVideoElId,
   speakerMuted = false,
   onVideoTimeUpdate,
+  onVideoMount,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -55,7 +57,7 @@ export function AvatarPanel({
       {/* Pre-recorded avatar video — overlays static image when playing */}
       {avatarVideoUrl && (
         <video
-          ref={videoRef}
+          ref={(node) => { (videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = node; onVideoMount?.(node) }}
           src={avatarVideoUrl}
           className={`absolute inset-0 w-full h-full object-cover object-top ${isLive ? 'hidden' : ''}`}
           playsInline

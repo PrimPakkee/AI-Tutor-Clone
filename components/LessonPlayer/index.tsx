@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import type { Lesson, Slide } from '@/lib/types'
 import { useTimeline } from '@/lib/use-timeline'
 import { useLiveSession } from '@/lib/use-live-session'
@@ -29,6 +29,9 @@ export function LessonPlayer({
     currentSegment,
     currentSlideIndex,
     activeLiveSeg,
+    activeHighlights,
+    activeScene,
+    activeAnnotations,
     quotaRemainingSeconds,
     canRaiseHand,
     setElapsed,
@@ -45,47 +48,58 @@ export function LessonPlayer({
     onAvatarDone: () => endLive(activeLiveSeg?.timeout ?? 30),
   })
 
+  const [started, setStarted] = useState(false)
+  const avatarVideoRef = useRef<HTMLVideoElement | null>(null)
+
+  const slideContainerRef = useRef<HTMLDivElement>(null)
+  const [slideSize, setSlideSize] = useState({ w: 0, h: 0 })
+
+  useLayoutEffect(() => {
+    const el = slideContainerRef.current
+    if (!el) return
+    const compute = () => {
+      const { width, height } = el.getBoundingClientRect()
+      if (!width || !height) return
+      const pad = 32
+      const aw = width - pad
+      const ah = height - pad
+      const w = ah * 4 / 3 <= aw ? ah * 4 / 3 : aw
+      setSlideSize({ w, h: w * 3 / 4 })
+    }
+    compute()
+    const ro = new ResizeObserver(compute)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
   const [toast, setToast] = useState<string | null>(null)
   const [speakerMuted, setSpeakerMuted] = useState(false)
 
   const currentSlide = lesson.slides.find((s) => s.index === currentSlideIndex)
-  const currentSlideRef = currentSegment?.type === 'stream' ? currentSegment.slide : null
-
-  const [displayedSlide, setDisplayedSlide] = useState<Slide | undefined>(currentSlide)
-  const [exitingSlide, setExitingSlide] = useState<Slide | null>(null)
-  const [slideKey, setSlideKey] = useState(0)
-  const displayedSlideRef = useRef(displayedSlide)
-
-  useEffect(() => {
-    if (!currentSlide || currentSlide.index === displayedSlideRef.current?.index) return
-    setExitingSlide(displayedSlideRef.current ?? null)
-    displayedSlideRef.current = currentSlide
-    setDisplayedSlide(currentSlide)
-    setSlideKey(k => k + 1)
-    const t = setTimeout(() => setExitingSlide(null), 300)
-    return () => clearTimeout(t)
-  }, [currentSlide?.index]) // eslint-disable-line react-hooks/exhaustive-deps
-
   if (!currentSlide) return null
 
+  function handleStart() {
+    setStarted(true)
+    avatarVideoRef.current?.play().catch(() => {})
+  }
+
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-gray-50">
+    <div className="flex flex-col h-screen overflow-hidden bg-gray-50 relative">
       <TopBar title={lesson.title} isLive watcherCount={128} />
 
       <div className="flex flex-1 min-h-0">
         {/* Left 70%: lecture notes */}
-        <div className="w-[70%] border-r border-gray-200 bg-white relative overflow-hidden">
-          {exitingSlide && (
-            <div className="slide-card-exit absolute inset-0 bg-white z-10">
-              <SlidePanel slide={exitingSlide} slideCount={lesson.slides.length} highlights={[]} />
+        <div className="w-[70%] border-r border-gray-200 bg-white overflow-hidden flex flex-col">
+          <div ref={slideContainerRef} className="flex-1 min-h-0 flex items-center justify-center">
+            <div style={{ width: slideSize.w, height: slideSize.h, position: 'relative', flexShrink: 0 }}>
+              <SlidePanel
+                slide={currentSlide}
+                slideCount={lesson.slides.length}
+                highlights={activeHighlights}
+                sceneState={activeScene}
+                annotations={activeAnnotations}
+              />
             </div>
-          )}
-          <div key={slideKey} className="slide-card-enter absolute inset-0 bg-white">
-            <SlidePanel
-              slide={displayedSlide ?? currentSlide}
-              slideCount={lesson.slides.length}
-              highlights={currentSlideRef?.highlights ?? []}
-            />
           </div>
         </div>
 
@@ -104,6 +118,7 @@ export function LessonPlayer({
               liveVideoElId={AVATAR_LIVE_EL_ID}
               speakerMuted={speakerMuted}
               onVideoTimeUpdate={setElapsed}
+              onVideoMount={(el) => { avatarVideoRef.current = el }}
             />
           </div>
 
@@ -139,6 +154,22 @@ export function LessonPlayer({
           />
         </div>
       </div>
+
+      {!started && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-indigo-900/96 to-violet-950/96 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-5 text-center px-10">
+            <p className="text-indigo-300 text-xs font-extrabold tracking-[0.2em] uppercase">SAT Math Prep</p>
+            <h1 className="text-white text-4xl font-black leading-tight">{lesson.title}</h1>
+            <p className="text-indigo-200/60 text-sm">Taught by {instructorName}</p>
+            <button
+              onClick={handleStart}
+              className="mt-3 bg-white text-indigo-900 font-bold text-base px-10 py-3.5 rounded-2xl shadow-2xl hover:bg-indigo-50 active:scale-95 transition-all"
+            >
+              Start Lesson →
+            </button>
+          </div>
+        </div>
+      )}
 
       {toast && <Toast message={toast} onDismiss={() => setToast(null)} />}
 

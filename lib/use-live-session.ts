@@ -35,6 +35,7 @@ export function useLiveSession({
   const waitingForAvatarRef = useRef(false)
   const avatarDoneTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const onAvatarDoneRef = useRef(onAvatarDone)
+  const aigcStartedRef = useRef(false)
   onAvatarDoneRef.current = onAvatarDone
 
   useEffect(() => {
@@ -47,6 +48,7 @@ export function useLiveSession({
 
     async function runSession() {
       if (aborted) return
+      aigcStartedRef.current = false
       startSession()
     }
 
@@ -73,17 +75,32 @@ export function useLiveSession({
           console.log('[user-left] uid:', (user as {uid:unknown}).uid, 'reason:', reason)
         })
         client.on('user-published', async (user, mediaType) => {
-          console.log('[user-published] uid:', (user as {uid:unknown}).uid, 'mediaType:', mediaType)
+          const uid = (user as {uid:unknown}).uid
+          console.log('[user-published] uid:', uid, 'mediaType:', mediaType, 'aigcStarted:', aigcStartedRef.current)
+          if (mediaType === 'video' && !aigcStartedRef.current) {
+            console.log('[user-published] skipping video — AIGC not yet started')
+            return
+          }
           const track = await client.subscribe(user, mediaType as 'video' | 'audio')
           if (mediaType === 'video') {
             const el = document.getElementById(avatarVideoElId)
-            console.log('[user-published] video el:', el, 'id:', avatarVideoElId)
+            console.log('[user-published] video el:', el, 'children:', el?.children.length)
             ;(track as import('omnirtc-web').IRemoteVideoTrack).on('first-frame-decoded', () => {
               console.log('[user-published] first-frame-decoded ✓')
             })
             try {
-              ;(track as import('omnirtc-web').IRemoteVideoTrack).play(el ?? avatarVideoElId, { fit: 'cover' })
+              ;(track as import('omnirtc-web').IRemoteVideoTrack).play(avatarVideoElId)
               console.log('[user-published] track.play() called, isPlaying:', (track as {isPlaying?:boolean}).isPlaying)
+              setTimeout(() => {
+                const el2 = document.getElementById(avatarVideoElId)
+                const videoEl = el2?.querySelector('video') as HTMLVideoElement | null
+                console.log('[video-check 500ms] isPlaying:', (track as {isPlaying?:boolean}).isPlaying,
+                  '| videoEl:', !!videoEl,
+                  '| srcObject:', !!(videoEl?.srcObject),
+                  '| paused:', videoEl?.paused,
+                  '| readyState:', videoEl?.readyState,
+                  '| el2 children:', el2?.children.length)
+              }, 500)
             } catch (e) {
               console.error('[user-published] track.play() failed:', e)
             }
@@ -128,6 +145,7 @@ export function useLiveSession({
 
           // Query server-side AIGC config
           const configs = await aigc.query()
+          console.log('[useLiveSession] aigc.query() full:', JSON.stringify(configs))
           const avatarChatCfg = configs?.config?.avatarChat ?? configs?.avatarChat
           console.log('[useLiveSession] avatarChatCfg:', JSON.stringify(avatarChatCfg))
 
@@ -138,11 +156,10 @@ export function useLiveSession({
             activeLiveSeg.systemPrompt ||
             `You are Emily, an AI SAT math tutor. Answer the student's questions about: "${activeLiveSeg.prompt}". Be concise and encouraging. Respond in the student's language.`
           const startPayload = {
+            ...(avatarChatCfg ?? {}),
             prompt: systemPrompt,
             welcome: activeLiveSeg.prompt,
-            avatarConfig: 78,  // 腾讯-伴学营-外国女
-            ttsConfig: 42,
-            llmConfig: 15,  // deepseek-v3 (id:15) instead of doubao (id:60)
+            llmConfig: avatarChatCfg?.llmConfig || 60,
           }
           console.log('[useLiveSession] aigc.start payload:', JSON.stringify(startPayload))
           const startResult = await aigc.start('avatarchat', startPayload, robotId)
@@ -151,6 +168,7 @@ export function useLiveSession({
             console.error('[useLiveSession] aigc.start FAILED, code:', startCode, 'result:', JSON.stringify(startResult))
           } else {
             console.log('[useLiveSession] aigc.start OK:', JSON.stringify(startResult))
+            aigcStartedRef.current = true
           }
           // Log any remote users already in the channel
           console.log('[useLiveSession] remoteUsers after start:', (client as {remoteUsers?: unknown[]}).remoteUsers)

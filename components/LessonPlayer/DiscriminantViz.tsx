@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const W = 290, H = 180
 const mg = { top: 14, right: 14, bottom: 24, left: 28 }
@@ -19,8 +19,12 @@ function toSVG(mx: number, my: number): [number, number] {
   ]
 }
 
-export function DiscriminantViz() {
+export function DiscriminantViz({ sceneState = {} }: { sceneState?: Record<string, unknown> }) {
   const [c, setC] = useState(2)
+
+  useEffect(() => {
+    if ('c' in sceneState) setC(sceneState.c as number)
+  }, [sceneState])
 
   const disc = 16 - 4 * c
   const vertexY = c - 4

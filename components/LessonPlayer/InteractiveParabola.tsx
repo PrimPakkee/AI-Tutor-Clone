@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 type HoverParam = 'a' | 'h' | 'k' | null
 
@@ -44,11 +44,21 @@ function Chip({ color, label, param, hover, setHover }: {
   )
 }
 
-export function InteractiveParabola() {
+export function InteractiveParabola({ sceneState = {} }: { sceneState?: Record<string, unknown> }) {
   const [h, setH] = useState(2)
   const [k, setK] = useState(-1)
   const [aUp, setAUp] = useState(true)
   const [hover, setHover] = useState<HoverParam>(null)
+  const prevScene = useRef<Record<string, unknown>>({})
+
+  useEffect(() => {
+    if (!sceneState || sceneState === prevScene.current) return
+    if ('h' in sceneState && sceneState.h !== prevScene.current.h) setH(sceneState.h as number)
+    if ('k' in sceneState && sceneState.k !== prevScene.current.k) setK(sceneState.k as number)
+    if ('aUp' in sceneState) setAUp(sceneState.aUp as boolean)
+    if ('hover' in sceneState) setHover(sceneState.hover as HoverParam)
+    prevScene.current = sceneState
+  }, [sceneState])
 
   const a = aUp ? 0.55 : -0.55
 

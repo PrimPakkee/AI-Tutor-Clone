@@ -230,7 +230,20 @@
       "avatarVideoUrl": "/content/seg-cover.webm",
       "slide": {
         "index": 0,
-        "highlights": []
+        "highlights": [
+          {
+            "text": "Vertex form f(x) = a(x−h)²+k — read vertex and direction instantly",
+            "at": -29
+          },
+          {
+            "text": "Discriminant Δ = b²−4ac — predict number of roots without solving",
+            "at": -24
+          },
+          {
+            "text": "SAT shortcut: extract vertex coordinates directly from the equation",
+            "at": -19
+          }
+        ]
       }
     },
     {
@@ -241,7 +254,16 @@
       "avatarVideoUrl": "/content/seg-01a.webm",
       "slide": {
         "index": 1,
-        "highlights": []
+        "highlights": [
+          {
+            "text": "A function of degree 2: f(x) = ax² + bx + c",
+            "at": 3
+          },
+          {
+            "text": "Its graph is always a parabola",
+            "at": 8
+          }
+        ]
       }
     },
     {
@@ -278,7 +300,23 @@
       "avatarVideoUrl": "/content/seg-02a.webm",
       "slide": {
         "index": 2,
-        "highlights": []
+        "highlights": [
+          {
+            "text": "a > 0: parabola opens upward (minimum)",
+            "at": 174
+          }
+        ],
+        "annotations": [
+          {
+            "at": 175,
+            "text": "opens UP ↑",
+            "x": 58,
+            "y": 28,
+            "color": "#16a34a",
+            "size": "md",
+            "rotate": -3
+          }
+        ]
       }
     },
     {
@@ -304,7 +342,36 @@
       "avatarVideoUrl": "/content/seg-02b.webm",
       "slide": {
         "index": 2,
-        "highlights": []
+        "highlights": [
+          {
+            "text": "a < 0: parabola opens downward (maximum)",
+            "at": 248
+          },
+          {
+            "text": "c is the y-intercept (where x = 0)",
+            "at": 254
+          }
+        ],
+        "annotations": [
+          {
+            "at": 248,
+            "text": "opens DOWN ↓",
+            "x": 55,
+            "y": 28,
+            "color": "#dc2626",
+            "size": "md",
+            "rotate": -2
+          },
+          {
+            "at": 256,
+            "text": "y-intercept!",
+            "x": 55,
+            "y": 55,
+            "color": "#7c3aed",
+            "size": "sm",
+            "rotate": 2
+          }
+        ]
       }
     },
     {
@@ -315,7 +382,83 @@
       "avatarVideoUrl": "/content/seg-03.webm",
       "slide": {
         "index": 3,
-        "highlights": []
+        "highlights": [
+          {
+            "text": "(h, k) is the vertex — the min or max point",
+            "at": 608
+          },
+          {
+            "text": "SAT loves this form: vertex is read directly",
+            "at": 614
+          }
+        ],
+        "scene": [
+          {
+            "at": 607,
+            "state": {
+              "h": 0,
+              "k": 0,
+              "aUp": true,
+              "hover": null
+            }
+          },
+          {
+            "at": 614,
+            "state": {
+              "h": 2,
+              "k": 0,
+              "aUp": true,
+              "hover": "h"
+            }
+          },
+          {
+            "at": 622,
+            "state": {
+              "h": 2,
+              "k": 3,
+              "aUp": true,
+              "hover": "k"
+            }
+          },
+          {
+            "at": 630,
+            "state": {
+              "h": -1,
+              "k": 2,
+              "aUp": false,
+              "hover": "a"
+            }
+          },
+          {
+            "at": 638,
+            "state": {
+              "h": 1,
+              "k": -2,
+              "aUp": true,
+              "hover": null
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "at": 610,
+            "text": "vertex = (h, k)",
+            "x": 4,
+            "y": 8,
+            "color": "#d97706",
+            "size": "lg",
+            "rotate": -2
+          },
+          {
+            "at": 625,
+            "text": "axis of symmetry",
+            "x": 4,
+            "y": 88,
+            "color": "#6366f1",
+            "size": "sm",
+            "rotate": -1
+          }
+        ]
       }
     },
     {
@@ -341,7 +484,12 @@
       "avatarVideoUrl": "/content/seg-04a.webm",
       "slide": {
         "index": 4,
-        "highlights": []
+        "highlights": [
+          {
+            "text": "Vertex: the single highest or lowest point",
+            "at": 908
+          }
+        ]
       }
     },
     {
@@ -367,7 +515,12 @@
       "avatarVideoUrl": "/content/seg-04b.webm",
       "slide": {
         "index": 4,
-        "highlights": []
+        "highlights": [
+          {
+            "text": "Roots: where the parabola crosses the x-axis",
+            "at": 1028
+          }
+        ]
       }
     },
     {
@@ -378,7 +531,53 @@
       "avatarVideoUrl": "/content/seg-05.webm",
       "slide": {
         "index": 5,
-        "highlights": []
+        "highlights": [],
+        "scene": [
+          {
+            "at": 1089,
+            "state": {
+              "highlight": null
+            }
+          },
+          {
+            "at": 1094,
+            "state": {
+              "highlight": "h"
+            }
+          },
+          {
+            "at": 1102,
+            "state": {
+              "highlight": "k"
+            }
+          },
+          {
+            "at": 1110,
+            "state": {
+              "highlight": null
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "at": 1091,
+            "text": "h = 1  ← shift right 1",
+            "x": 5,
+            "y": 72,
+            "color": "#4f46e5",
+            "size": "md",
+            "rotate": -2
+          },
+          {
+            "at": 1100,
+            "text": "k = 4  ← shift up 4",
+            "x": 5,
+            "y": 82,
+            "color": "#b45309",
+            "size": "md",
+            "rotate": -1
+          }
+        ]
       }
     },
     {
@@ -389,7 +588,56 @@
       "avatarVideoUrl": "/content/seg-06a.webm",
       "slide": {
         "index": 6,
-        "highlights": []
+        "highlights": [],
+        "scene": [
+          {
+            "at": 1267,
+            "state": {
+              "c": 1.0
+            }
+          },
+          {
+            "at": 1274,
+            "state": {
+              "c": 4.0
+            }
+          },
+          {
+            "at": 1282,
+            "state": {
+              "c": 5.5
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "at": 1270,
+            "text": "Δ > 0  →  2 roots",
+            "x": 55,
+            "y": 8,
+            "color": "#059669",
+            "size": "md",
+            "rotate": -2
+          },
+          {
+            "at": 1278,
+            "text": "Δ = 0  →  1 root",
+            "x": 55,
+            "y": 20,
+            "color": "#d97706",
+            "size": "md",
+            "rotate": -1
+          },
+          {
+            "at": 1285,
+            "text": "Δ < 0  →  no roots",
+            "x": 55,
+            "y": 32,
+            "color": "#dc2626",
+            "size": "md",
+            "rotate": -2
+          }
+        ]
       }
     },
     {
@@ -415,7 +663,27 @@
       "avatarVideoUrl": "/content/seg-06b.webm",
       "slide": {
         "index": 6,
-        "highlights": []
+        "highlights": [],
+        "scene": [
+          {
+            "at": 1387,
+            "state": {
+              "c": 2.0
+            }
+          },
+          {
+            "at": 1394,
+            "state": {
+              "c": 3.5
+            }
+          },
+          {
+            "at": 1402,
+            "state": {
+              "c": 4.5
+            }
+          }
+        ]
       }
     },
     {

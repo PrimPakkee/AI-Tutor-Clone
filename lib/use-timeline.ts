@@ -1,5 +1,5 @@
 import { useReducer, useCallback } from 'react'
-import type { Lesson, Segment, StreamSegment, InstructorLiveSegment, PlayerState } from '@/lib/types'
+import type { Lesson, Segment, StreamSegment, InstructorLiveSegment, PlayerState, Annotation } from '@/lib/types'
 import { createQuota, consumeQuota, getRemainingSeconds, isQuotaExhausted } from '@/lib/quota'
 import type { Quota } from '@/lib/quota'
 
@@ -114,11 +114,28 @@ export function useTimeline(lesson: Lesson | null) {
   const currentSlideIndex: number =
     activeLiveSeg?.slide.index ?? currentSegment?.slide.index ?? 0
 
+  const activeHighlights: string[] =
+    currentSegment?.slide.highlights
+      ?.filter(h => state.elapsed >= h.at)
+      .map(h => h.text) ?? []
+
+  const activeScene: Record<string, unknown> =
+    currentSegment?.slide.scene
+      ?.filter(e => state.elapsed >= e.at)
+      .at(-1)?.state ?? {}
+
+  const activeAnnotations: Annotation[] =
+    currentSegment?.slide.annotations
+      ?.filter(a => state.elapsed >= a.at) ?? []
+
   return {
     playerState: state.playerState,
     currentSegment,
     currentSlideIndex,
     activeLiveSeg,
+    activeHighlights,
+    activeScene,
+    activeAnnotations,
     elapsed: state.elapsed,
     quotaRemainingSeconds: getRemainingSeconds(state.quota),
     canRaiseHand: !isQuotaExhausted(state.quota) && state.playerState === 'STREAMING',

@@ -139,7 +139,7 @@ export function StudentPanel({
           ✋
         </button>
         <button
-          onClick={() => { setMicMuted((v) => { onMicToggle(!v); return !v }) }}
+          onClick={() => { const next = !micMuted; setMicMuted(next); onMicToggle(next) }}
           title={micMuted ? '取消静音' : '静音'}
           className={`w-7 h-7 rounded-md flex items-center justify-center shadow transition-colors ${micMuted ? 'bg-red-500 text-white' : 'bg-white/85 hover:bg-white text-slate-700'}`}
         >
@@ -159,7 +159,7 @@ export function StudentPanel({
           )}
         </button>
         <button
-          onClick={() => { setCameraOff((v) => { onCameraToggle(!v); return !v }) }}
+          onClick={() => { const next = !cameraOff; setCameraOff(next); onCameraToggle(next) }}
           title={cameraOff ? '开启摄像头' : '关闭摄像头'}
           className={`w-7 h-7 rounded-md flex items-center justify-center shadow transition-colors ${cameraOff ? 'bg-red-500 text-white' : 'bg-white/85 hover:bg-white text-slate-700'}`}
         >
@@ -175,7 +175,7 @@ export function StudentPanel({
           )}
         </button>
         <button
-          onClick={() => { setSpeakerMuted((v) => { onVolumeToggle(!v); return !v }) }}
+          onClick={() => { const next = !speakerMuted; setSpeakerMuted(next); onVolumeToggle(next) }}
           title={speakerMuted ? '取消静音' : '静音讲师'}
           className={`w-7 h-7 rounded-md flex items-center justify-center shadow transition-colors ${speakerMuted ? 'bg-red-500 text-white' : 'bg-white/85 hover:bg-white text-slate-700'}`}
         >

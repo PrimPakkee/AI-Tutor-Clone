@@ -5,13 +5,26 @@
 ## 产品功能
 
 三栏布局：
-- **左侧 70%** — 幻灯片面板，支持 KaTeX 公式、交互式可视化和动画图表
+- **左侧 70%** — 幻灯片面板，支持 KaTeX 公式、交互式可视化、动画图表、课件联动和手写体注释
 - **右上 15%** — 数字人讲师（预录视频 + 直播 AIGC 流）
 - **右下 15%** — 学生摄像头，含麦克风/摄像头/音量控制和互动时长倒计时
 
 课程由 JSON 时间轴驱动。预录片段自动播放；到达配置的触发点时，讲师头像切换为 OmniRTC + AIGC `avatarchat` 实时对话模式。
 
 **计时原理：** 视频的 `currentTime` + 当前片段的 `startTime` = 课程绝对时间，状态机用此值判断何时切换片段、何时触发直播。所有直播触发点均位于录播段边界处，视频不会中途暂停。
+
+### 课件增强功能
+
+以下三项功能均通过 JSON 时间轴的 `at`（绝对秒数）字段配置，与数字人讲解内容精准同步：
+
+**① 圈重点（highlights）**
+幻灯片内容按时间点高亮，呈现金色光晕动画，与数字人讲解同步触发。在 segment 的 `slide.highlights` 数组中配置 `{ text, at }`。
+
+**② 联动动图（scene events）**
+数字人讲到特定内容时，幻灯片中的交互可视化组件自动联动——抛物线滑块移动、判别式 c 值变化、公式参数高亮。在 `slide.scene` 数组中配置 `{ at, state: { ... } }`，state 键与各组件的 prop 对应。用户仍可手动操作滑块。
+
+**③ 手写体注释（annotations）**
+在幻灯片上叠加手写风格文字（Caveat 字体），按时间点从左到右写入。支持位置（x/y 百分比）、颜色、大小、旋转角度配置。在 `slide.annotations` 数组中配置。
 
 ---
 
@@ -59,23 +72,23 @@ app/
   api/rtc/token/            RTC Token 接口
 
 components/LessonPlayer/
-  index.tsx                 根组件，串联所有面板
-  SlidePanel.tsx            幻灯片渲染（概念课 / 练习题 / 解析 / 封面）
+  index.tsx                 根组件，串联所有面板；ResizeObserver 计算 4:3 卡片尺寸
+  SlidePanel.tsx            幻灯片渲染（封面 / 概念课 / 练习题 / 解析 / 总结）；含幻灯片切换动画、高亮、联动、手写体注释
   AvatarPanel.tsx           讲师视频（预录 + OmniRTC 直播流）
   StudentPanel.tsx          学生摄像头、控件、互动时长倒计时
   LiveControls.tsx          直播覆盖层（倒计时、结束按钮、文字输入）
   TopBar.tsx
   ParabolaGraph.tsx         SVG 抛物线，支持顶点/对称轴高亮
-  InteractiveParabola.tsx   滑块驱动的顶点式探索器
-  DiscriminantViz.tsx       判别式滑块可视化
+  InteractiveParabola.tsx   滑块驱动的顶点式探索器；支持 sceneState 联动
+  DiscriminantViz.tsx       判别式滑块可视化；支持 sceneState 联动
   CompletingSquare.tsx      配方法四步动画演示
 
 lib/
-  use-timeline.ts           时间轴状态机（STREAMING / LIVE_INSTRUCTOR / LIVE_STUDENT）
+  use-timeline.ts           时间轴状态机（STREAMING / LIVE_INSTRUCTOR / LIVE_STUDENT）；计算 activeHighlights / activeScene / activeAnnotations
   use-live-session.ts       OmniRTC 生命周期：加入、发布、AIGC、清理
   use-tts-session.ts        /slides 页专用 TTS 会话（AIGC voicechat，不发布本地流）
   quota.ts                  直播互动时长配额追踪
-  types.ts                  共享 TypeScript 类型定义
+  types.ts                  共享 TypeScript 类型定义（含 Highlight / SceneEvent / Annotation）
 
 data/lessons/
   sat-math-quadratic-01.json    课程内容、片段、旁白脚本
@@ -108,8 +121,18 @@ scripts/
       "startTime": 0,           // 相对课程起点的秒数
       "duration": 300,
       "avatarVideoUrl": "/content/seg-01.webm",
-      "slide": { "index": 1, "highlights": [] },
-      "script": "..."           // 旁白文字稿
+      "slide": {
+        "index": 1,
+        "highlights": [         // ① 圈重点：按绝对时间触发高亮
+          { "text": "顶点式", "at": 12 }
+        ],
+        "scene": [              // ② 联动动图：按时间驱动组件状态
+          { "at": 20, "state": { "h": 2, "k": -3, "aUp": true } }
+        ],
+        "annotations": [        // ③ 手写体注释：按时间叠加手写文字
+          { "at": 35, "text": "记住这个！", "x": 60, "y": 40, "color": "#d97706", "rotate": -3 }
+        ]
+      }
     },
     {
       "id": "live-01",
