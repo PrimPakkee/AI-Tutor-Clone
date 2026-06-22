@@ -36,10 +36,10 @@ const FACTS: FactDef[] = [
 export function QuadraticIntroSlide({ slide, slideCount, sceneState }: Props) {
   const focus = (sceneState.focus as IntroFocus) ?? null
 
-  function cardCls(match: NonNullable<IntroFocus>, activeExtra: string, dimBase: string): string {
-    if (focus === null) return dimBase
-    if (focus === match) return `${dimBase} ${activeExtra}`
-    return `${dimBase} opacity-40`
+  function cardCls(match: NonNullable<IntroFocus>, activeExtra: string, baseExtra: string): string {
+    if (focus === null) return baseExtra
+    if (focus === match) return `${baseExtra} ${activeExtra}`
+    return `${baseExtra} opacity-40`
   }
 
   function factCls(match: NonNullable<IntroFocus>): string {

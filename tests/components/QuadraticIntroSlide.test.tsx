@@ -55,6 +55,24 @@ describe('QuadraticIntroSlide', () => {
     expect(screen.getByTestId('fact-roots').className).toMatch(/opacity-40/)
   })
 
+  it('dims form cards and non-matching facts when focus is dir', () => {
+    render(<QuadraticIntroSlide slide={slide} slideCount={12} sceneState={{ focus: 'dir' }} />)
+    expect(screen.getByTestId('card-std').className).toMatch(/opacity-40/)
+    expect(screen.getByTestId('card-vtx').className).toMatch(/opacity-40/)
+    expect(screen.getByTestId('fact-dir').className).not.toMatch(/opacity-40/)
+    expect(screen.getByTestId('fact-axis').className).toMatch(/opacity-40/)
+    expect(screen.getByTestId('fact-roots').className).toMatch(/opacity-40/)
+  })
+
+  it('dims form cards and non-matching facts when focus is roots', () => {
+    render(<QuadraticIntroSlide slide={slide} slideCount={12} sceneState={{ focus: 'roots' }} />)
+    expect(screen.getByTestId('card-std').className).toMatch(/opacity-40/)
+    expect(screen.getByTestId('card-vtx').className).toMatch(/opacity-40/)
+    expect(screen.getByTestId('fact-roots').className).not.toMatch(/opacity-40/)
+    expect(screen.getByTestId('fact-dir').className).toMatch(/opacity-40/)
+    expect(screen.getByTestId('fact-axis').className).toMatch(/opacity-40/)
+  })
+
   it('dims nothing when sceneState is empty', () => {
     render(<QuadraticIntroSlide slide={slide} slideCount={12} sceneState={{}} />)
     expect(screen.getByTestId('card-std').className).not.toMatch(/opacity-40/)
