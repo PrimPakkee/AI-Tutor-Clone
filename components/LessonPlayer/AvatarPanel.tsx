@@ -53,6 +53,8 @@ export function AvatarPanel({
 
     const onCanPlay = () => {
       if (pendingUrlRef.current !== avatarVideoUrl) return
+      const prevVideo = (activeIdxRef.current === 0 ? videoRefA : videoRefB).current
+      prevVideo?.pause()
       setActiveIdx(nextIdx)
       onVideoMount?.(nextVideo)
       if (playerState === 'STREAMING') nextVideo.play().catch(() => {})
