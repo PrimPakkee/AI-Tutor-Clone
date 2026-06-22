@@ -23,6 +23,8 @@ describe('AnnotatedParabola', () => {
     render(<AnnotatedParabola focus="std" />)
     // yint is lit when focus='std' — must NOT be dimmed
     expect(screen.getByTestId('callout-yint').className).not.toMatch(/opacity-25/)
+    expect(screen.getByTestId('callout-yint').className).toMatch(/shadow-md/)
+    expect(screen.getByTestId('callout-yint').className).toMatch(/scale-105/)
     // vertex is NOT lit when focus='std' — must be dimmed
     expect(screen.getByTestId('callout-vertex').className).toMatch(/opacity-25/)
     expect(screen.getByTestId('callout-axis').className).toMatch(/opacity-25/)
@@ -40,6 +42,17 @@ describe('AnnotatedParabola', () => {
     render(<AnnotatedParabola focus="vtx" />)
     expect(screen.getByTestId('callout-vertex').className).not.toMatch(/opacity-25/)
     expect(screen.getByTestId('callout-axis').className).not.toMatch(/opacity-25/)
+    expect(screen.getByTestId('callout-vertex').className).toMatch(/shadow-md/)
+    expect(screen.getByTestId('callout-axis').className).toMatch(/shadow-md/)
+    expect(screen.getByTestId('callout-yint').className).toMatch(/opacity-25/)
+    expect(screen.getByTestId('callout-roots').className).toMatch(/opacity-25/)
+  })
+
+  it('lights only vertex when focus is dir', () => {
+    render(<AnnotatedParabola focus="dir" />)
+    expect(screen.getByTestId('callout-vertex').className).not.toMatch(/opacity-25/)
+    expect(screen.getByTestId('callout-vertex').className).toMatch(/shadow-md/)
+    expect(screen.getByTestId('callout-axis').className).toMatch(/opacity-25/)
     expect(screen.getByTestId('callout-yint').className).toMatch(/opacity-25/)
     expect(screen.getByTestId('callout-roots').className).toMatch(/opacity-25/)
   })
