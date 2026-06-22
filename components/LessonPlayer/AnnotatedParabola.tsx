@@ -85,7 +85,7 @@ export function AnnotatedParabola({ focus }: { focus: IntroFocus }) {
         <line
           x1="210" y1="28" x2="210" y2="282"
           stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="7 5"
-          opacity={dotOpacity(['vtx', 'axis'], focus) === 1 ? 0.8 : 0.2}
+          opacity={focus === null || (['vtx', 'axis'] as NonNullable<IntroFocus>[]).includes(focus as NonNullable<IntroFocus>) ? 0.8 : 0.2}
           style={{ transition: 'opacity 0.2s' }}
         />
 

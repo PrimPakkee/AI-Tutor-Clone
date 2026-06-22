@@ -298,7 +298,7 @@
         "index": 1,
         "highlights": [],
         "scene": [
-          { "at": 88,  "state": { "focus": "dir" } },
+          { "at": 87,  "state": { "focus": "dir" } },
           { "at": 103, "state": { "focus": "axis" } },
           { "at": 117, "state": { "focus": "roots" } },
           { "at": 128, "state": { "focus": null } }
