@@ -28,7 +28,7 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
   ].join(' ')
 
   return (
-    <>
+    <div data-testid="standard-form-slide" className="flex flex-col h-full">
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-500 to-violet-600 px-5 py-3.5 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2.5 min-w-0">
@@ -153,6 +153,6 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
           <AnnotatedParabola focus={introFocus} />
         </div>
       </div>
-    </>
+    </div>
   )
 }

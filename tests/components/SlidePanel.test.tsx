@@ -64,6 +64,6 @@ describe('SlidePanel', () => {
         annotations={[]}
       />
     )
-    expect(screen.getByTestId('annotated-parabola')).toBeInTheDocument()
+    expect(screen.getByTestId('standard-form-slide')).toBeInTheDocument()
   })
 })
