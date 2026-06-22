@@ -22,15 +22,12 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
     return `${baseExtra} opacity-40`
   }
 
-  const satCls = [
-    'mt-auto bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-300 rounded-xl p-3 transition-all duration-200',
-    focus !== null ? 'opacity-40' : '',
-  ].join(' ')
+  const satCls = `mt-auto bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-300 rounded-xl p-3 transition-all duration-200${focus !== null ? ' opacity-40' : ''}`
 
   return (
-    <div data-testid="standard-form-slide" className="flex flex-col h-full">
+    <>
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-500 to-violet-600 px-5 py-3.5 flex items-center justify-between shrink-0">
+      <div data-testid="standard-form-slide" className="bg-gradient-to-r from-indigo-500 to-violet-600 px-5 py-3.5 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2.5 min-w-0">
           <span className="text-white/60 text-[11px] font-extrabold tracking-widest uppercase shrink-0">CONCEPT</span>
           <h2 className="text-base font-bold text-white truncate">{slide.title}</h2>
@@ -153,6 +150,6 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
           <AnnotatedParabola focus={introFocus} />
         </div>
       </div>
-    </div>
+    </>
   )
 }

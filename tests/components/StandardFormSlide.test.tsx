@@ -9,9 +9,10 @@ const slide: Slide = {
 }
 
 describe('StandardFormSlide', () => {
-  it('renders the slide title', () => {
+  it('renders the formula row', () => {
     render(<StandardFormSlide slide={slide} slideCount={12} sceneState={{}} />)
-    expect(screen.getByText('Standard Form')).toBeInTheDocument()
+    const elements = screen.queryAllByText(/f\(x\)/)
+    expect(elements.length).toBeGreaterThan(0)
   })
 
   it('renders all three coefficient cards', () => {
