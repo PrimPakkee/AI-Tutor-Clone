@@ -375,8 +375,8 @@
           { "at": 245, "state": { "focus": null } },
           { "at": 248, "state": { "focus": "a" } },
           { "at": 258, "state": { "focus": "b" } },
-          { "at": 268, "state": { "focus": "c" } },
-          { "at": 278, "state": { "focus": null } }
+          { "at": 262, "state": { "focus": "c" } },
+          { "at": 272, "state": { "focus": null } }
         ],
         "annotations": [
           {
@@ -394,6 +394,15 @@
             "x": 55,
             "y": 55,
             "color": "#7c3aed",
+            "size": "sm",
+            "rotate": 2
+          },
+          {
+            "at": 258,
+            "text": "x = −b/2a",
+            "x": 55,
+            "y": 42,
+            "color": "#b45309",
             "size": "sm",
             "rotate": 2
           }
