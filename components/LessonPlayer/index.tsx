@@ -109,7 +109,7 @@ export function LessonPlayer({
           <div className="h-1/2 border-b border-gray-200 flex flex-col">
             <AvatarPanel
               avatarVideoUrl={
-                currentSegment?.type === 'stream' ? currentSegment.avatarVideoUrl : null
+                started && currentSegment?.type === 'stream' ? currentSegment.avatarVideoUrl : null
               }
               playerState={playerState}
               instructorName={instructorName}
