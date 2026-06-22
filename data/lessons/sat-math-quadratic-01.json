@@ -21,6 +21,7 @@
       "index": 1,
       "title": "What is a Quadratic Function?",
       "content": {
+        "variant": "quadratic-intro",
         "formula": null,
         "bullets": [
           "A function of degree 2: f(x) = ax² + bx + c",
@@ -263,6 +264,12 @@
             "text": "Its graph is always a parabola",
             "at": 8
           }
+        ],
+        "scene": [
+          { "at": 0,  "state": { "focus": null } },
+          { "at": 10, "state": { "focus": "std" } },
+          { "at": 28, "state": { "focus": "vtx" } },
+          { "at": 50, "state": { "focus": null } }
         ]
       }
     },
@@ -289,7 +296,13 @@
       "avatarVideoUrl": "/content/seg-01b.webm",
       "slide": {
         "index": 1,
-        "highlights": []
+        "highlights": [],
+        "scene": [
+          { "at": 88,  "state": { "focus": "dir" } },
+          { "at": 103, "state": { "focus": "axis" } },
+          { "at": 117, "state": { "focus": "roots" } },
+          { "at": 128, "state": { "focus": null } }
+        ]
       }
     },
     {
