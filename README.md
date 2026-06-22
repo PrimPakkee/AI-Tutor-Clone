@@ -79,6 +79,8 @@ components/LessonPlayer/
   LiveControls.tsx          直播覆盖层（倒计时、结束按钮、文字输入）
   TopBar.tsx
   ParabolaGraph.tsx         SVG 抛物线，支持顶点/对称轴高亮
+  AnnotatedParabola.tsx     抛物线解剖图（顶点/对称轴/y截距/零点标注），focus prop 驱动高亮/淡出
+  QuadraticIntroSlide.tsx   "What is a Quadratic Function?" 双栏幻灯片，消费 AnnotatedParabola
   InteractiveParabola.tsx   滑块驱动的顶点式探索器；支持 sceneState 联动
   DiscriminantViz.tsx       判别式滑块可视化；支持 sceneState 联动
   CompletingSquare.tsx      配方法四步动画演示
@@ -222,6 +224,7 @@ scripts/
 | `content.variant` | 组件 | 说明 |
 |-------------------|------|------|
 | `cover` | `CoverSlide` | 深色渐变背景、SVG 抛物线动画、课程目标列表 |
+| `quadratic-intro` | `QuadraticIntroSlide` | 双栏布局：左侧标准式/顶点式公式卡片 + 关键事实行 + SAT 策略提示；右侧带标注的 SVG 抛物线解剖图；`sceneState.focus` 驱动分区高亮 |
 | `vertex-explorer` | `InteractiveParabola` | h / k / a 三个滑块，实时更新图像 |
 | `formula-highlight` | KaTeX + `ParabolaGraph` | 点击公式中的参数高亮对应图像元素 |
 | `discriminant` | `DiscriminantViz` | c 滑块动态展示零点出现/消失 |
@@ -233,7 +236,7 @@ scripts/
 ## 开发命令
 
 ```bash
-npm test            # Jest，23 个测试
+npm test            # Jest，39 个测试
 npm run test:watch  # 监听模式
 npx tsc --noEmit    # TypeScript 类型检查
 npm run lint        # ESLint
