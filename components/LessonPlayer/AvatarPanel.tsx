@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import type { PlayerState } from '@/lib/types'
 
 type Props = {
@@ -25,55 +25,112 @@ export function AvatarPanel({
   onVideoTimeUpdate,
   onVideoMount,
 }: Props) {
-  const videoRef = useRef<HTMLVideoElement>(null)
+  // Ping-pong pattern: two always-mounted videos; inactive one pre-loads while
+  // active one keeps playing, then we crossfade — no static-image flash at transitions.
+  const videoRefA = useRef<HTMLVideoElement>(null)
+  const videoRefB = useRef<HTMLVideoElement>(null)
+  const [activeIdx, _setActiveIdx] = useState<0 | 1>(0)
+  const activeIdxRef = useRef<0 | 1>(0)
+  const pendingUrlRef = useRef<string | null>(null)
+
+  function setActiveIdx(idx: 0 | 1) {
+    activeIdxRef.current = idx
+    _setActiveIdx(idx)
+  }
 
   const isLive = playerState === 'LIVE_INSTRUCTOR' || playerState === 'LIVE_STUDENT'
 
+  // When URL changes, load into the idle slot and crossfade once it's ready
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    if (playerState === 'STREAMING' && avatarVideoUrl) {
-      if (video.paused) video.play().catch(() => {})
-    } else {
-      video.pause()
+    if (!avatarVideoUrl) return
+    const nextIdx: 0 | 1 = activeIdxRef.current === 0 ? 1 : 0
+    const nextVideo = (nextIdx === 0 ? videoRefA : videoRefB).current
+    if (!nextVideo) return
+
+    pendingUrlRef.current = avatarVideoUrl
+    nextVideo.src = avatarVideoUrl
+    nextVideo.load()
+
+    const onCanPlay = () => {
+      if (pendingUrlRef.current !== avatarVideoUrl) return
+      setActiveIdx(nextIdx)
+      onVideoMount?.(nextVideo)
+      if (playerState === 'STREAMING') nextVideo.play().catch(() => {})
     }
-  }, [playerState, avatarVideoUrl])
+    nextVideo.addEventListener('canplay', onCanPlay, { once: true })
+    return () => nextVideo.removeEventListener('canplay', onCanPlay)
+  // playerState intentionally omitted — canPlay handler captures it at load time
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [avatarVideoUrl])
+
+  // Play / pause the active video whenever playerState or active slot changes
+  useEffect(() => {
+    const active = (activeIdx === 0 ? videoRefA : videoRefB).current
+    if (!active) return
+    if (playerState === 'STREAMING' && avatarVideoUrl) {
+      if (active.paused) active.play().catch(() => {})
+    } else {
+      active.pause()
+    }
+  }, [playerState, avatarVideoUrl, activeIdx])
 
   useEffect(() => {
-    if (videoRef.current) videoRef.current.muted = speakerMuted
+    if (videoRefA.current) videoRefA.current.muted = speakerMuted
+    if (videoRefB.current) videoRefB.current.muted = speakerMuted
   }, [speakerMuted])
 
   const isSpeaking = playerState === 'STREAMING' || playerState === 'LIVE_INSTRUCTOR'
 
+  function timeUpdateHandler(idx: 0 | 1) {
+    return () => {
+      if (idx !== activeIdxRef.current) return
+      const t = (idx === 0 ? videoRefA : videoRefB).current?.currentTime ?? 0
+      onVideoTimeUpdate?.(segmentStartTime + t)
+    }
+  }
+
+  function endedHandler(idx: 0 | 1) {
+    return () => {
+      if (idx !== activeIdxRef.current) return
+      const dur = (idx === 0 ? videoRefA : videoRefB).current?.duration ?? 0
+      onVideoTimeUpdate?.(segmentStartTime + dur)
+    }
+  }
+
   return (
     <div className="flex-1 relative overflow-hidden bg-[#e8dfd4]">
-      {/* Static instructor image — always visible as base layer */}
+      {/* Static instructor image — visible only before first video loads */}
       <img
         src="/instructor.png"
         alt={instructorName}
         className="absolute inset-0 w-full h-full object-cover object-top"
       />
 
-      {/* Pre-recorded avatar video — overlays static image when playing */}
-      {avatarVideoUrl && (
-        <video
-          ref={(node) => { (videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = node; onVideoMount?.(node) }}
-          src={avatarVideoUrl}
-          className={`absolute inset-0 w-full h-full object-cover object-top ${isLive ? 'hidden' : ''}`}
-          playsInline
-          onTimeUpdate={() => {
-            const t = videoRef.current?.currentTime ?? 0
-            onVideoTimeUpdate?.(segmentStartTime + t)
-          }}
-          onEnded={() => {
-            const dur = videoRef.current?.duration ?? 0
-            onVideoTimeUpdate?.(segmentStartTime + dur)
-          }}
-          onError={() => console.warn('[AvatarPanel] Video failed to load:', avatarVideoUrl)}
-        />
-      )}
+      {/* Slot A */}
+      <video
+        ref={videoRefA}
+        className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${
+          isLive || activeIdx !== 0 ? 'opacity-0' : 'opacity-100'
+        }`}
+        playsInline
+        onTimeUpdate={timeUpdateHandler(0)}
+        onEnded={endedHandler(0)}
+        onError={() => console.warn('[AvatarPanel] Slot A failed:', videoRefA.current?.src)}
+      />
 
-      {/* OmniRTC live avatar stream — overlays static image while AIGC connects */}
+      {/* Slot B */}
+      <video
+        ref={videoRefB}
+        className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${
+          isLive || activeIdx !== 1 ? 'opacity-0' : 'opacity-100'
+        }`}
+        playsInline
+        onTimeUpdate={timeUpdateHandler(1)}
+        onEnded={endedHandler(1)}
+        onError={() => console.warn('[AvatarPanel] Slot B failed:', videoRefB.current?.src)}
+      />
+
+      {/* OmniRTC live avatar stream */}
       {isLive && liveVideoElId && (
         <div
           id={liveVideoElId}
