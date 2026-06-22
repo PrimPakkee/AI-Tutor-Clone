@@ -267,10 +267,30 @@
           }
         ],
         "scene": [
-          { "at": 0,  "state": { "focus": null } },
-          { "at": 10, "state": { "focus": "std" } },
-          { "at": 28, "state": { "focus": "vtx" } },
-          { "at": 50, "state": { "focus": null } }
+          {
+            "at": 0,
+            "state": {
+              "focus": null
+            }
+          },
+          {
+            "at": 10,
+            "state": {
+              "focus": "std"
+            }
+          },
+          {
+            "at": 28,
+            "state": {
+              "focus": "vtx"
+            }
+          },
+          {
+            "at": 50,
+            "state": {
+              "focus": null
+            }
+          }
         ]
       }
     },
@@ -299,10 +319,30 @@
         "index": 1,
         "highlights": [],
         "scene": [
-          { "at": 87,  "state": { "focus": "dir" } },
-          { "at": 103, "state": { "focus": "axis" } },
-          { "at": 117, "state": { "focus": "roots" } },
-          { "at": 128, "state": { "focus": null } }
+          {
+            "at": 87,
+            "state": {
+              "focus": "dir"
+            }
+          },
+          {
+            "at": 103,
+            "state": {
+              "focus": "axis"
+            }
+          },
+          {
+            "at": 117,
+            "state": {
+              "focus": "roots"
+            }
+          },
+          {
+            "at": 128,
+            "state": {
+              "focus": null
+            }
+          }
         ]
       }
     },
@@ -321,9 +361,30 @@
           }
         ],
         "scene": [
-          { "at": 171, "state": { "focus": null } },
-          { "at": 174, "state": { "focus": "a" } },
-          { "at": 244, "state": { "focus": null } }
+          {
+            "at": 171,
+            "state": {
+              "focus": null
+            }
+          },
+          {
+            "at": 174,
+            "state": {
+              "focus": "a"
+            }
+          },
+          {
+            "at": 229,
+            "state": {
+              "focus": "c"
+            }
+          },
+          {
+            "at": 244,
+            "state": {
+              "focus": null
+            }
+          }
         ],
         "annotations": [
           {
@@ -334,6 +395,15 @@
             "color": "#16a34a",
             "size": "md",
             "rotate": -3
+          },
+          {
+            "at": 230,
+            "text": "f(0) = c",
+            "x": 62,
+            "y": 62,
+            "color": "#059669",
+            "size": "sm",
+            "rotate": -1
           }
         ]
       }
@@ -361,44 +431,30 @@
       "avatarVideoUrl": "/content/seg-02b.webm",
       "slide": {
         "index": 2,
-        "highlights": [
+        "highlights": [],
+        "scene": [
           {
-            "text": "a < 0: parabola opens downward (maximum)",
-            "at": 248
+            "at": 245,
+            "state": {
+              "focus": null
+            }
           },
           {
-            "text": "c is the y-intercept (where x = 0)",
-            "at": 254
+            "at": 248,
+            "state": {
+              "focus": "b"
+            }
+          },
+          {
+            "at": 290,
+            "state": {
+              "focus": null
+            }
           }
-        ],
-        "scene": [
-          { "at": 245, "state": { "focus": null } },
-          { "at": 248, "state": { "focus": "a" } },
-          { "at": 258, "state": { "focus": "b" } },
-          { "at": 262, "state": { "focus": "c" } },
-          { "at": 272, "state": { "focus": null } }
         ],
         "annotations": [
           {
-            "at": 248,
-            "text": "opens DOWN ↓",
-            "x": 55,
-            "y": 28,
-            "color": "#dc2626",
-            "size": "md",
-            "rotate": -2
-          },
-          {
-            "at": 256,
-            "text": "y-intercept!",
-            "x": 55,
-            "y": 55,
-            "color": "#7c3aed",
-            "size": "sm",
-            "rotate": 2
-          },
-          {
-            "at": 258,
+            "at": 249,
             "text": "x = −b/2a",
             "x": 55,
             "y": 42,
