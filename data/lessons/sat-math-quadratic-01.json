@@ -35,6 +35,7 @@
       "index": 2,
       "title": "Standard Form",
       "content": {
+        "variant": "standard-form",
         "formula": "f(x) = \\textcolor{#6366f1}{a}x^2 + \\textcolor{#d97706}{b}x + \\textcolor{#10b981}{c}",
         "bullets": [
           "a > 0: parabola opens upward (minimum)",
@@ -319,6 +320,11 @@
             "at": 174
           }
         ],
+        "scene": [
+          { "at": 171, "state": { "focus": null } },
+          { "at": 174, "state": { "focus": "a" } },
+          { "at": 244, "state": { "focus": null } }
+        ],
         "annotations": [
           {
             "at": 175,
@@ -364,6 +370,13 @@
             "text": "c is the y-intercept (where x = 0)",
             "at": 254
           }
+        ],
+        "scene": [
+          { "at": 245, "state": { "focus": null } },
+          { "at": 248, "state": { "focus": "a" } },
+          { "at": 258, "state": { "focus": "b" } },
+          { "at": 268, "state": { "focus": "c" } },
+          { "at": 278, "state": { "focus": null } }
         ],
         "annotations": [
           {
