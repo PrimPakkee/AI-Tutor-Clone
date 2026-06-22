@@ -22,9 +22,10 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
     return `${baseExtra} opacity-40`
   }
 
-  const satCls = focus !== null
-    ? 'mt-auto bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-300 rounded-xl p-3 transition-all duration-200 opacity-40'
-    : 'mt-auto bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-300 rounded-xl p-3 transition-all duration-200'
+  const satCls = [
+    'mt-auto bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-300 rounded-xl p-3 transition-all duration-200',
+    focus !== null ? 'opacity-40' : '',
+  ].join(' ')
 
   return (
     <>
@@ -54,7 +55,7 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
             className={cardCls(
               'a',
               'border-indigo-400 ring-2 ring-indigo-300',
-              'rounded-xl p-3 border-2 transition-all duration-200 bg-indigo-50 border-indigo-200'
+              'rounded-xl p-3 border-2 transition-all duration-200 bg-indigo-50'
             )}
           >
             <div className="flex items-center justify-between mb-1.5">
@@ -84,7 +85,7 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
             className={cardCls(
               'b',
               'border-amber-400 ring-2 ring-amber-300',
-              'rounded-xl p-3 border-2 transition-all duration-200 bg-amber-50 border-amber-200'
+              'rounded-xl p-3 border-2 transition-all duration-200 bg-amber-50'
             )}
           >
             <div className="flex items-center justify-between mb-1.5">
@@ -114,7 +115,7 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
             className={cardCls(
               'c',
               'border-emerald-400 ring-2 ring-emerald-300',
-              'rounded-xl p-3 border-2 transition-all duration-200 bg-emerald-50 border-emerald-200'
+              'rounded-xl p-3 border-2 transition-all duration-200 bg-emerald-50'
             )}
           >
             <div className="flex items-center justify-between mb-1.5">
