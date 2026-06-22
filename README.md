@@ -76,12 +76,12 @@ app/
 components/LessonPlayer/
   index.tsx                 根组件，串联所有面板；ResizeObserver 计算 4:3 卡片尺寸
   SlidePanel.tsx            幻灯片渲染（封面 / 概念课 / 练习题 / 解析 / 总结）；含幻灯片切换动画、高亮、联动、手写体注释
-  AvatarPanel.tsx           讲师视频（预录 + OmniRTC 直播流）
+  AvatarPanel.tsx           讲师视频（预录 + OmniRTC 直播流）；双 video 槽 ping-pong 交叉淡入，段间切换无静态图闪烁
   StudentPanel.tsx          学生摄像头、控件、互动时长倒计时
   LiveControls.tsx          直播覆盖层（倒计时、结束按钮、文字输入）
   TopBar.tsx
   ParabolaGraph.tsx         SVG 抛物线，支持顶点/对称轴高亮
-  AnnotatedParabola.tsx     抛物线解剖图（顶点/对称轴/y截距/零点标注），focus prop 驱动高亮/淡出
+  AnnotatedParabola.tsx     抛物线解剖图（顶点/对称轴/y截距/零点标注），focus prop 驱动高亮/淡出；axisLabel prop 支持自定义对称轴标注
   QuadraticIntroSlide.tsx   "What is a Quadratic Function?" 双栏幻灯片，消费 AnnotatedParabola
   StandardFormSlide.tsx     "Standard Form" 双栏幻灯片：左侧 a/b/c 系数卡片 + SAT 提示；右侧 AnnotatedParabola；sceneState.focus('a'|'b'|'c') 驱动高亮
   InteractiveParabola.tsx   滑块驱动的顶点式探索器；支持 sceneState 联动
