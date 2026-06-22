@@ -8,6 +8,7 @@ import { InteractiveParabola } from './InteractiveParabola'
 import { DiscriminantViz } from './DiscriminantViz'
 import { CompletingSquare } from './CompletingSquare'
 import { QuadraticIntroSlide } from './QuadraticIntroSlide'
+import { StandardFormSlide } from './StandardFormSlide'
 
 type Props = {
   slide: Slide
@@ -704,11 +705,13 @@ function SlideCard({ slide, slideCount, highlights, sceneState, annotations, cla
 }) {
   const isCover = slide.content.variant === 'cover'
   const isQuadraticIntro = slide.content.variant === 'quadratic-intro'
-  const type = (isCover || isQuadraticIntro) ? null : detectSlideType(slide.title)
+  const isStandardForm = slide.content.variant === 'standard-form'
+  const type = (isCover || isQuadraticIntro || isStandardForm) ? null : detectSlideType(slide.title)
   return (
     <div className={className} style={style}>
       {isCover           && <CoverSlide          slide={slide} slideCount={slideCount} highlights={highlights} />}
       {isQuadraticIntro  && <QuadraticIntroSlide  slide={slide} slideCount={slideCount} sceneState={sceneState} />}
+      {isStandardForm    && <StandardFormSlide    slide={slide} slideCount={slideCount} sceneState={sceneState} />}
       {type === 'concept'         && <ConceptSlide  slide={slide} slideCount={slideCount} highlights={highlights} sceneState={sceneState} />}
       {type === 'question'        && <QuestionSlide slide={slide} slideCount={slideCount} />}
       {type === 'solution'        && <SolutionSlide slide={slide} slideCount={slideCount} highlights={highlights} />}

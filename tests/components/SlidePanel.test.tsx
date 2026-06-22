@@ -48,4 +48,22 @@ describe('SlidePanel', () => {
     render(<SlidePanel slide={slideWithBulletsOnly} slideCount={12} highlights={[]} />)
     expect(document.querySelector('[data-testid="formula-block"]')).not.toBeInTheDocument()
   })
+
+  it('renders StandardFormSlide for standard-form variant', () => {
+    const sfSlide: Slide = {
+      index: 2,
+      title: 'Standard Form',
+      content: { variant: 'standard-form', bullets: [] },
+    }
+    render(
+      <SlidePanel
+        slide={sfSlide}
+        slideCount={12}
+        highlights={[]}
+        sceneState={{}}
+        annotations={[]}
+      />
+    )
+    expect(screen.getByTestId('annotated-parabola')).toBeInTheDocument()
+  })
 })
