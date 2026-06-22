@@ -147,7 +147,7 @@ export function StandardFormSlide({ slide, slideCount, sceneState }: Props) {
 
         {/* Right panel */}
         <div className="flex-1 flex items-center justify-center p-4 bg-slate-50/40">
-          <AnnotatedParabola focus={introFocus} />
+          <AnnotatedParabola focus={introFocus} axisLabel="x = −b/2a" />
         </div>
       </div>
     </>

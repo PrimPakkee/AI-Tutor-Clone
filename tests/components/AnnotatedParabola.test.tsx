@@ -56,4 +56,15 @@ describe('AnnotatedParabola', () => {
     expect(screen.getByTestId('callout-yint').className).toMatch(/opacity-25/)
     expect(screen.getByTestId('callout-roots').className).toMatch(/opacity-25/)
   })
+
+  it('shows default axis label x = h when no axisLabel prop', () => {
+    render(<AnnotatedParabola focus={null} />)
+    expect(screen.getByText('x = h')).toBeInTheDocument()
+  })
+
+  it('shows custom axisLabel when provided', () => {
+    render(<AnnotatedParabola focus={null} axisLabel="x = −b/2a" />)
+    expect(screen.getByText('x = −b/2a')).toBeInTheDocument()
+    expect(screen.queryByText('x = h')).not.toBeInTheDocument()
+  })
 })

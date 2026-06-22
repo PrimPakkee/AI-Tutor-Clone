@@ -61,7 +61,7 @@ function dotOpacity(litOn: NonNullable<IntroFocus>[], focus: IntroFocus): number
   return (litOn as string[]).includes(focus) ? 1 : 0.2
 }
 
-export function AnnotatedParabola({ focus }: { focus: IntroFocus }) {
+export function AnnotatedParabola({ focus, axisLabel = 'x = h' }: { focus: IntroFocus; axisLabel?: string }) {
   return (
     <div className="relative w-full h-full" data-testid="annotated-parabola">
       <svg className="w-full h-full" viewBox="0 0 420 310" xmlns="http://www.w3.org/2000/svg">
@@ -130,7 +130,7 @@ export function AnnotatedParabola({ focus }: { focus: IntroFocus }) {
       {CALLOUTS.map((c) => (
         <div key={c.id} className={calloutCls(c, focus)} style={c.style} data-testid={`callout-${c.id}`}>
           <span className="text-xs font-bold block">{c.label}</span>
-          <span className="text-[10px] font-medium opacity-70">{c.sub}</span>
+          <span className="text-[10px] font-medium opacity-70">{c.id === 'axis' ? axisLabel : c.sub}</span>
         </div>
       ))}
     </div>
