@@ -64,7 +64,7 @@ export function useLiveSession({
         if (aborted) return
 
         const engine = getRTCInstance(token)
-        const client = engine.createClient({ mode: 'rtc', codec: 'h264' })
+        const client = engine.createClient({ mode: 'live', codec: 'h264', role: 'host' })
         clientRef.current = client
 
         // Register BEFORE join — required by SDK
@@ -134,6 +134,7 @@ export function useLiveSession({
             console.log('[stream-message raw] uid:', uid, 'bytes:', (payload as Uint8Array)?.length)
           })
 
+          Aigc.BASE_URL = Aigc.BASE_URL_TEST
           const aigc = new Aigc(token)
           aigc.bind(client as Parameters<typeof aigc.bind>[0])
           aigcRef.current = aigc

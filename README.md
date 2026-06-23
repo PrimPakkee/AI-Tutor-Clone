@@ -50,7 +50,7 @@ npm run dev
 
 | 变量 | 是否必填 | 说明 |
 |------|----------|------|
-| `OMNIRTC_TOKEN` | 直播模式必填 | OmniRTC 预签发 core token（type 7），从 OmniRTC 控制台获取 |
+| `OMNIRTC_TOKEN` | 直播模式必填 | OmniRTC 预签发 core token（type 1），从 OmniRTC 控制台获取 |
 | `ANTHROPIC_API_KEY` | 仅内容生成时 | `generate-lesson.mjs` 通过 Claude API 生成课程 JSON 时使用 |
 
 ---
@@ -192,10 +192,13 @@ scripts/
 
 直播使用 OmniRTC Web SDK，结合 AIGC `avatarchat` 服务。
 
-**数字人配置：**
+**数字人配置（avatarchat，从服务端 `aigc.query()` 读取）：**
 - `avatarConfig: 78` — 腾讯·伴学营·外国女
-- `ttsConfig: 42` — TTS 音色
 - `llmConfig: 15` — DeepSeek-V3
+
+**SDK 关键参数：**
+- RTC 客户端必须使用 `mode: 'live', role: 'host'`（`mode: 'rtc'` 不兼容 AIGC）
+- 测试环境须设置 `Aigc.BASE_URL = Aigc.BASE_URL_TEST`（指向 `rtcapi2stage`）
 
 **会话流程：**
 1. 播放器在触发点进入 `LIVE_INSTRUCTOR` 状态
@@ -205,7 +208,11 @@ scripts/
 5. 头像朗读片段配置的 `prompt`（欢迎语），学生语音作答
 6. 学生点击"说完了"发送语音，或达到 `timeout` 自动结束会话
 
-**Token 说明：** 当前使用单一预签发 `OMNIRTC_TOKEN`。生产环境请将 `app/api/rtc/token/route.ts` 替换为逐会话服务端签发逻辑。
+**`/slides` 页 TTS（voicechat）：**
+- 使用 `voice_type: 'en_female_sarah_new_conversation_wvae_bigtts'`（火山引擎英文女声）
+- 仅发布音频流，不启动摄像头
+
+**Token 说明：** 当前使用单一预签发 `OMNIRTC_TOKEN`（type:1，测试环境）。生产环境请将 `app/api/rtc/token/route.ts` 替换为逐会话服务端签发逻辑。
 
 ---
 
@@ -217,6 +224,8 @@ scripts/
 | 🎤 麦克风 | 仅 UI 状态 | 静音 OmniRTC 音频轨道 |
 | 📷 摄像头 | 禁用 getUserMedia 轨道 + 显示关闭遮罩 | 静音 OmniRTC 视频轨道 |
 | 🔊 音量 | 静音讲师视频音频 | 静音讲师视频音频 |
+
+摄像头默认**关闭**，用户主动开启后才调用 `getUserMedia`。
 
 剩余互动配额实时显示在学生面板底部，颜色随时长变化：绿色 → 橙色 → 红色 → "互动已用完"。
 

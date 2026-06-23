@@ -21,7 +21,7 @@ export function useTtsSession() {
       if (aborted) return
 
       const engine = getRTCInstance(token)
-      const client = engine.createClient({ mode: 'rtc', codec: 'h264' })
+      const client = engine.createClient({ mode: 'live', codec: 'h264', role: 'host' })
       clientRef.current = client
 
       client.on('user-published', async (user, mediaType) => {
@@ -34,12 +34,15 @@ export function useTtsSession() {
       await client.join()
       if (aborted) { await client.leave(); return }
 
+      Aigc.BASE_URL = Aigc.BASE_URL_TEST
       const aigc = new Aigc(token)
       aigc.bind(client as Parameters<typeof aigc.bind>[0])
       aigcRef.current = aigc
 
       const robotId = Math.random().toString().substring(2, 10)
-      await aigc.start('voicechat', { ttsConfig: 42, prompt: 'Read the text exactly as given, no additions.' }, robotId)
+      const serverCfg = await aigc.query()
+      console.log('[useTtsSession] aigc.query():', JSON.stringify(serverCfg))
+      await aigc.start('voicechat', { voice_type: 'en_female_sarah_new_conversation_wvae_bigtts', prompt: 'Read the text exactly as given, no additions.' }, robotId)
       if (aborted) return
 
       setIsReady(true)

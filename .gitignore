@@ -42,3 +42,4 @@ next-env.d.ts
 
 # lesson content videos
 public/content/*.mp4
+.superpowers/

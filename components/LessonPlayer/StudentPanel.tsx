@@ -29,13 +29,13 @@ export function StudentPanel({
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [micMuted, setMicMuted] = useState(false)
-  const [cameraOff, setCameraOff] = useState(false)
+  const [cameraOff, setCameraOff] = useState(true)
   const [speakerMuted, setSpeakerMuted] = useState(false)
   const [liveElapsed, setLiveElapsed] = useState(0)
 
   const isLive = playerState === 'LIVE_INSTRUCTOR' || playerState === 'LIVE_STUDENT'
 
-  // getUserMedia runs in STREAMING; stops when OmniRTC takes over in LIVE
+  // getUserMedia runs in STREAMING when camera is on; stops when OmniRTC takes over in LIVE
   useEffect(() => {
     if (isLive) {
       if (videoRef.current?.srcObject) {
@@ -44,6 +44,7 @@ export function StudentPanel({
       }
       return
     }
+    if (cameraOff) return
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
@@ -56,9 +57,10 @@ export function StudentPanel({
     return () => {
       if (videoRef.current?.srcObject) {
         ;(videoRef.current.srcObject as MediaStream).getTracks().forEach((t) => t.stop())
+        if (videoRef.current) videoRef.current.srcObject = null
       }
     }
-  }, [isLive])
+  }, [isLive, cameraOff])
 
   // Enable/disable local video track when cameraOff changes (STREAMING mode only)
   useEffect(() => {
